@@ -5,26 +5,19 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 import 'package:http/http.dart' as http;
 
-
 class MockClient extends Mock implements http.Client {}
 
 void main() {
   group('Manufacturer Selection', ()
   {
-    testWidgets('When App is built, text for select make is rendered', (
-        WidgetTester tester) async {
+    testWidgets('When App is built, text for select make is rendered', (WidgetTester tester) async {
       await tester.pumpWidget(App());
       expect(find.text('Select Make'), findsOneWidget);
     });
 
-    testWidgets('When App is built, a dropdown for make is rendered', (
-        WidgetTester tester) async {
+    testWidgets('When App is built, a dropdown for make is rendered', (WidgetTester tester) async {
       await tester.pumpWidget(App());
       expect(find.byKey(Key('MakeSelection')), findsOneWidget);
-    });
-
-    test('Calendar should have a list of 14 months', () {
-      expect('1', '1');
     });
   });
 
@@ -44,6 +37,15 @@ void main() {
 
       ApiClient subject = ApiClient(client);
       expect(await subject.fetchData(), {'title': 'Test'});
+    });
+  });
+
+  group('Start up', ()
+  {
+    testWidgets('When the app starts it tries to hit the api', (WidgetTester tester) async {
+      await tester.pumpWidget(App());
+
+      expect(find.text('Select Make'), findsOneWidget);
     });
   });
 }

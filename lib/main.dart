@@ -19,7 +19,6 @@ class HomePage extends StatelessWidget {
   HomePage({Key key, this.title}) : super(key: key);
 
   final String title;
-  String data = '';
 
   @override
   Widget build(BuildContext context) {

@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
 import 'home_page.dart';
 
-void main() => runApp(App());
+void main() => runApp(App(http.Client()));
 
 class App extends StatelessWidget {
+  http.Client httpClient;
+
+  App(this.httpClient);
 
   @override
   Widget build(BuildContext context) {
@@ -12,7 +16,7 @@ class App extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: HomePage(),
+      home: HomePage(this.httpClient),
     );
   }
 }

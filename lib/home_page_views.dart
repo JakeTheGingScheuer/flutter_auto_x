@@ -35,7 +35,7 @@ manufacturerSelectionView(CarData data) {
             children: <Widget>[
               Text('Select Make'),
               DropdownButton(
-                key: Key('MakeSelection'),
+                key: Key('ManufacturerSelector'),
                 items: manufacturerList(data.getManufacturers()),
                 onChanged: (val) => print(val),
               )

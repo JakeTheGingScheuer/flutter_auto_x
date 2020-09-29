@@ -2,6 +2,7 @@ import 'package:auto_x/car_data.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 import 'package:http/http.dart' as http;
+import 'mock_http_client.dart';
 
 
 Map<String, dynamic> fakeData =
@@ -15,8 +16,6 @@ Map<String, dynamic> fakeData =
     "Camry": "HS"
   }
 };
-
-class MockClient extends Mock implements http.Client {}
 
 void main() {
   test('get manufacturers retuns a list of the keys from the data', (){

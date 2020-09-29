@@ -33,9 +33,11 @@ void main(){
     expect(dropDownLabelFinder, findsOneWidget);
     expect(dropDownFinder, findsOneWidget);
 
-    // pump widget means do something.
-    // press button
-    // find 2 dropdown items one with Toyota one with Acura will be individual finders
-    // find by text or make key on widget with the manufacturer label if we cannot find by text
+    await tester.press(dropDownFinder);
+
+    final dropDownItem1 = find.text('Acura');
+    final dropDownItem2 = find.text('Toyota');
+    expect(dropDownItem1, findsOneWidget);
+    expect(dropDownItem2, findsOneWidget);
   });
 }

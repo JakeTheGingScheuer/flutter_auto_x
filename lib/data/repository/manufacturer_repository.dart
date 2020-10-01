@@ -1,3 +1,10 @@
+import 'dart:convert';
+import 'package:auto_x/data/model/api_result_model.dart';
+import 'package:auto_x/data/model/manufacturer.dart';
+import 'package:auto_x/res/strings/strings.dart';
+import 'package:http/http.dart' as http;
+
+
 abstract class ManufacturerRepository {
   Future<List<Manufacturer>> getManufacturers();
 }

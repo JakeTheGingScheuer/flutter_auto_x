@@ -1,7 +1,8 @@
-abstract class HomePageEvent {}
+import 'package:equatable/equatable.dart';
 
-class LoadingEvent extends HomePageEvent {}
+abstract class HomePageEvent extends Equatable{}
 
-class ConnectionFailedEvent extends HomePageEvent {}
-
-class DataFetchSuccessEvent extends HomePageEvent {}
+class FetchCarDataEvent extends HomePageEvent {
+  @override
+  List<Object> get props => null;
+}

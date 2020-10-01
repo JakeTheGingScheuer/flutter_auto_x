@@ -1,7 +1,11 @@
+import 'package:auto_x/data/model/manufacturer.dart';
 import 'package:flutter/material.dart';
 
 class ManufacturerSelectorWidget extends StatelessWidget {
-  const ManufacturerSelectorWidget({Key key}) : super(key: key);
+
+  final List<Manufacturer> manufacturers;
+
+  ManufacturerSelectorWidget({@required this.manufacturers});
 
   @override
   Widget build(BuildContext context) {
@@ -10,14 +14,18 @@ class ManufacturerSelectorWidget extends StatelessWidget {
         Text('Select Make'),
         DropdownButton(
           key: Key('ManufacturerSelector'),
-          items: _manufacturerList(['list', 'from', 'bloc', 'provider']),
+          items: _manufacturerList(),
           onChanged: (val) => print(val),
         )
       ],
     );
   }
 
-  _manufacturerList(List<String> makes) {
+  _manufacturerList() {
+    List<String> makes = List<String>();
+    manufacturers.forEach((make) {
+      makes.add(make.name);
+    });
     return makes.map<DropdownMenuItem<String>>((String value) {
       return _manufacturerItem(value);
     }).toList();

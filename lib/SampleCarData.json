@@ -1,0 +1,30 @@
+{
+  "manufacturers" : [
+    {
+      "name": "Honda",
+      "carModels": [
+        {
+          "name": "Civic",
+          "carClass": "HS"
+        },
+        {
+          "name": "Accord",
+          "carClass": "GS"
+        }
+      ]
+    },
+    {
+      "name": "Subaru",
+      "carModels": [
+        {
+          "name" : "BRZ",
+          "carClass": "DS"
+        },
+        {
+          "name": "WRX",
+          "carClass" : "DS"
+        }
+      ]
+    }
+  ]
+}

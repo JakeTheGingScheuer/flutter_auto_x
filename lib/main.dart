@@ -1,14 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
-import 'home_page.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'bloc/homepage/home_page_bloc.dart';
+import 'ui/views/home_view.dart';
 
-void main() => runApp(App(http.Client()));
+void main() => runApp(App());
 
 class App extends StatelessWidget {
-  http.Client httpClient;
-
-  App(this.httpClient);
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -16,7 +13,10 @@ class App extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: HomePage(this.httpClient),
+      home: BlocProvider(
+          create: (_) => HomePageBloc(),
+          child: HomeView()
+      )
     );
   }
 }

@@ -1,4 +1,4 @@
-import 'package:auto_x/car_data.dart';
+import 'package:auto_x/data/model/car_data.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 import 'package:http/http.dart' as http;

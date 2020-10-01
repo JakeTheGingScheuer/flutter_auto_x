@@ -14,9 +14,9 @@ class HomePageLoadingState extends HomePageState {
   List<Object> get props => [];
 }
 
-class HomePagedLoadedState extends HomePageState {
+class HomePageLoadedState extends HomePageState {
   List<Manufacturer> manufacturers;
-  HomePagedLoadedState({@required this.manufacturers});
+  HomePageLoadedState({@required this.manufacturers});
 
   @override
   List<Object> get props => [manufacturers];

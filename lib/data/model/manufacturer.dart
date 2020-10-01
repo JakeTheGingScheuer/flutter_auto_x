@@ -6,9 +6,9 @@ class Manufacturer {
 
   Manufacturer.fromJson(Map<String, dynamic> json) {
     name = json['name'];
-    if (json['manufacturers'] != null)
+    if (json['carModels'] != null)
       carModels = new List<Car>();
-    json['manufacturers'].forEach((entry) {
+    json['carModels'].forEach((entry) {
       carModels.add(new Car.fromJson(entry));
     });
   }
@@ -17,7 +17,7 @@ class Manufacturer {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['name'] = this.name;
     if (this.carModels != null) {
-      data['manufacturers'] = this.carModels.map((entry)=> entry.toJson()).toList();
+      data['carModels'] = this.carModels.map((entry)=> entry.toJson()).toList();
     }
     return data;
   }

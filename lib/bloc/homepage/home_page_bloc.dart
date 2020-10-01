@@ -19,7 +19,7 @@ class HomePageBloc extends Bloc<HomePageEvent, HomePageState> {
       yield HomePageLoadingState();
       try {
         List<Manufacturer> manufacturers = await repository.getManufacturers();
-        yield HomePagedLoadedState(manufacturers: manufacturers);
+        yield HomePageLoadedState(manufacturers: manufacturers);
       } catch (e) {
         yield HomePageErrorState(message: e.toString());
       }

@@ -23,35 +23,24 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: Container(
+      appBar: AppBar(title: Text('SCCA AutoX Street Classes')),
+        body: Center(
           child: BlocBuilder<HomePageBloc, HomePageState>(
             builder:(context, state){
               if (state is HomePageInitialState){
-                return _buildLoading();
+                return CircularProgressIndicator();
               } else if (state is HomePageLoadingState) {
-                return _buildLoading();
+                return CircularProgressIndicator();
               } else if (state is HomePageErrorState) {
-                return _buildFailed(state.message);
+                return Text(state.message);
               } else if (state is HomePageLoadedState) {
                 return ManufacturerSelectorWidget(manufacturers: state.manufacturers);
               } else {
-                return _buildFailed("Nothing Happened");
+                return Text("Nothing Happened");
               }
             }
           ),
         )
-    );
-  }
-
-  _buildLoading() {
-    return Center(
-      child: CircularProgressIndicator(),
-    );
-  }
-
-  _buildFailed(String message) {
-    return Center(
-      child: Text(message)
     );
   }
 }

@@ -1,3 +1,3 @@
 class AppStrings {
-  static String carDataUrl = 'http://127.0.0.1:5000/api/street_class/';
+  static String carDataUrl = 'https://autocrossapi-291314.ue.r.appspot.com/street_class';
 }

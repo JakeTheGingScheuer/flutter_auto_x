@@ -12,13 +12,4 @@ class Manufacturer {
       carModels.add(new Car.fromJson(entry));
     });
   }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['name'] = this.name;
-    if (this.carModels != null) {
-      data['carModels'] = this.carModels.map((entry)=> entry.toJson()).toList();
-    }
-    return data;
-  }
 }

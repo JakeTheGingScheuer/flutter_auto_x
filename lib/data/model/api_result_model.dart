@@ -13,12 +13,4 @@ class ApiResultModel {
         manufacturers.add(new Manufacturer.fromJson(entry));
       });
   }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    if (this.manufacturers != null) {
-      data['manufacturers'] = this.manufacturers.map((entry)=> entry.toJson()).toList();
-    }
-    return data;
-  }
 }

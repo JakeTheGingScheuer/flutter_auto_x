@@ -1,3 +1,4 @@
+import 'package:auto_x/data/model/car.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 
@@ -9,7 +10,7 @@ class CarLookUpInitialState extends CarLookUpState {
 }
 
 class CarLookUpSelectedManufacturerState extends CarLookUpState {
-  final String manufacturer;
+  final Manufacturer manufacturer;
   CarLookUpSelectedManufacturerState({@required this.manufacturer});
 
   @override
@@ -17,10 +18,9 @@ class CarLookUpSelectedManufacturerState extends CarLookUpState {
 }
 
 class CarLookUpSelectedModelState extends CarLookUpState {
-  final String model;
-  final String carClass;
-  CarLookUpSelectedModelState({@required this.model, @required this.carClass});
+  final Car car;
+  CarLookUpSelectedModelState({@required this.car});
 
   @override
-  List<Object> get props => [model, carClass];
+  List<Object> get props => [car];
 }

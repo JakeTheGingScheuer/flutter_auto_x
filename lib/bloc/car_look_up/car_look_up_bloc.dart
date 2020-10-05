@@ -18,9 +18,8 @@ class CarLookUpBloc extends Bloc<CarLookUpEvent, CarLookUpState> {
       yield CarLookUpSelectedManufacturerState(manufacturer: event.manufacturer);
     }
     else if (event is SelectCarModelEvent){
-      repository.captureCarModel(event.carModel);
-      repository.captureCarClass(event.carClass);
-      yield CarLookUpSelectedModelState(model: event.carModel, carClass: event.carClass);
+      repository.captureCarModel(event.car);
+      yield CarLookUpSelectedModelState(car: event.car);
     }
     else if (event is ResetEvent){
       yield CarLookUpInitialState();

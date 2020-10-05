@@ -1,4 +1,4 @@
-import 'manufacturer.dart';
+import 'car.dart';
 
 class ApiResultModel {
   List<Manufacturer> manufacturers;

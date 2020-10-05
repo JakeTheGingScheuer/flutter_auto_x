@@ -1,4 +1,4 @@
-import 'package:auto_x/data/model/manufacturer.dart';
+import 'package:auto_x/data/model/car.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/cupertino.dart';
 

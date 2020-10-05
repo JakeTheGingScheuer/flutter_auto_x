@@ -1,5 +1,5 @@
 import 'package:auto_x/bloc/homepage/home_page_state.dart';
-import 'package:auto_x/data/model/manufacturer.dart';
+import 'package:auto_x/data/model/car.dart';
 import 'package:auto_x/data/repository/manufacturer_repository.dart';
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';

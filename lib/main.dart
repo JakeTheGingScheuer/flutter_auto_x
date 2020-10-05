@@ -11,13 +11,19 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
+      theme: myTheme(),
       home: BlocProvider(
           create: (_) => HomePageBloc(repository: ManufacturerRepositoryImpl()),
           child: HomePage()
       )
     );
   }
+}
+
+myTheme(){
+  return ThemeData(
+    primaryColor: Colors.white,
+    accentColor: Colors.red,
+    fontFamily: 'Ubuntu'
+  );
 }

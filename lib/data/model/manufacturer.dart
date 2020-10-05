@@ -4,6 +4,11 @@ class Manufacturer {
   String name;
   List<Car> carModels;
 
+  Manufacturer(){
+    this.name = '';
+    this.carModels= [];
+  }
+
   Manufacturer.fromJson(Map<String, dynamic> json) {
     name = json['name'];
     if (json['carModels'] != null)

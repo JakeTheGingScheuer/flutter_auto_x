@@ -1,12 +1,12 @@
 import 'package:auto_x/bloc/car_data/car_data_bloc.dart';
-import 'package:auto_x/bloc/car_data/car_data_event.dart';
-import 'package:auto_x/bloc/car_data/cart_data_state.dart';
-import 'package:auto_x/bloc/car_look_up/car_look_up_bloc.dart';
-import 'package:auto_x/data/repository/car_look_up_repository.dart';
+import 'package:auto_x/bloc/navigation/navigation_bloc.dart';
+import 'package:auto_x/bloc/navigation/navigation_event.dart';
+import 'package:auto_x/bloc/navigation/navigation_state.dart';
+import 'package:auto_x/data/repository/car_data_repository.dart';
+import 'package:auto_x/ui/pages/car_look_up_page.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:localstorage/localstorage.dart';
-import 'car_look_up_page.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -14,40 +14,30 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  CarDataBloc carDataBloc;
+  NavigationBloc navigationBloc;
 
   @override
   void initState() {
     super.initState();
-    carDataBloc = BlocProvider.of<CarDataBloc>(context);
-    carDataBloc.add(FetchCarDataEvent());
+    navigationBloc = BlocProvider.of<NavigationBloc>(context);
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         resizeToAvoidBottomPadding: true,
-        appBar: AppBar(title: Text('Street Class Lookup')),
-          body: Center(
-            child: BlocBuilder<CarDataBloc, CarDataState>(
-              builder:(context, state){
-                if (state is CarDataInitialState){
-                  return CircularProgressIndicator();
-                } else if (state is CarDataLoadingState) {
-                  return CircularProgressIndicator();
-                } else if (state is CarDataErrorState) {
-                  return Text(state.message);
-                } else if (state is CarDataLoadedState) {
-                  return BlocProvider(
-                      create: (_) => CarLookUpBloc(repository: CarLookUpRepositoryImpl()),
-                      child: CarLookUpPage(manufacturers: state.manufacturers)
-                  );
-                } else {
-                  return Text("Nothing Happened");
-                }
-              }
-            ),
-          )
-      );
+        body: Center(child: BlocBuilder<NavigationBloc, NavigationState>(builder: (context, state) {
+          if (state is NavigateToEventsState) {
+            return Text("Events Page");
+          } else if (state is NavigateToModsState) {
+            return Text("Mods Page");
+          } else if (state is NavigateToCarLookupState) {
+            return BlocProvider(
+                create: (_) => CarDataBloc(repository: CarDataRepositoryImpl()), child: CarLookupPage());
+          } else {
+            return RaisedButton(
+                onPressed: () => navigationBloc.add(NavigateToCarLookupEvent()), child: Text('Street Class Lookup'));
+          }
+        })));
   }
 }

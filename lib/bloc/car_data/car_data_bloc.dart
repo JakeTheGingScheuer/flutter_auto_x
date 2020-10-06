@@ -15,7 +15,7 @@ class CarDataBloc extends Bloc<CarDataEvent, CarDataState> {
 
   @override
   Stream<CarDataState> mapEventToState(CarDataEvent event) async* {
-    if (event is FetchCarDataEvent){
+    if (event is FetchCarDataEvent) {
       yield CarDataLoadingState();
       try {
         List<Manufacturer> manufacturers = await repository.getCarData();
@@ -25,5 +25,4 @@ class CarDataBloc extends Bloc<CarDataEvent, CarDataState> {
       }
     }
   }
-
 }

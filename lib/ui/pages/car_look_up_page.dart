@@ -1,68 +1,48 @@
-import 'package:auto_x/bloc/car_look_up/car_look_up_bloc.dart';
-import 'package:auto_x/bloc/car_look_up/car_look_up_event.dart';
-import 'package:auto_x/bloc/car_look_up/car_look_up_state.dart';
-import 'package:auto_x/data/model/car_data.dart';
-import 'package:auto_x/ui/widgets/selector_widget.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:auto_x/bloc/car_data/car_data_bloc.dart';
+import 'package:auto_x/bloc/car_data/car_data_event.dart';
+import 'package:auto_x/bloc/car_data/cart_data_state.dart';
+import 'package:auto_x/bloc/car_lookup/car_lookup_bloc.dart';
+import 'package:auto_x/data/repository/car_look_up_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import '../widgets/car_look_up_widget.dart';
 
-class CarLookUpPage extends StatefulWidget {
-  final List<Manufacturer> manufacturers;
-
-  CarLookUpPage({@required this.manufacturers});
-
+class CarLookupPage extends StatefulWidget {
   @override
-  _CarLookUpState createState() =>
-      _CarLookUpState(manufacturers: this.manufacturers);
+  _CarLookupPageState createState() => _CarLookupPageState();
 }
 
-class _CarLookUpState extends State<CarLookUpPage> {
-  CarLookUpBloc carLookUpBloc;
-  final List<Manufacturer> manufacturers;
-
-  _CarLookUpState({@required this.manufacturers});
+class _CarLookupPageState extends State<CarLookupPage> {
+  CarDataBloc carDataBloc;
 
   @override
   void initState() {
     super.initState();
-    carLookUpBloc = BlocProvider.of<CarLookUpBloc>(context);
+    carDataBloc = BlocProvider.of<CarDataBloc>(context);
+    carDataBloc.add(FetchCarDataEvent());
   }
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Column(
-        children: [
-          SizedBox(height: 10),
-          Image(height: 200, image: AssetImage('assets/scca-logo.jpg')),
-          SizedBox(height: 10),
-          BlocBuilder<CarLookUpBloc, CarLookUpState>(builder: (context, state) {
-            if (state is CarLookUpInitialState) {
-              return SelectorWidget(carData: manufacturers);
-            } else if (state is CarLookUpSelectedManufacturerState) {
-              return SelectorWidget(carData: state.manufacturer.carModels);
-            } else if (state is CarLookUpSelectedModelState) {
-              return GestureDetector(
-                  onTap: () => carLookUpBloc.add(ResetEvent()),
-                  child: Center(
-                      child: Text(state.car.carClass,
-                          style: TextStyle(
-                              fontSize: 36,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.red,
-                              shadows: [
-                                Shadow(
-                                    color: Colors.grey.withOpacity(0.5),
-                                    blurRadius: 7,
-                                    offset: Offset(0, 3))
-                              ]))));
+    return Scaffold(
+        resizeToAvoidBottomPadding: true,
+        appBar: AppBar(title: Text('Street Class Lookup')),
+        body: Center(
+          child: BlocBuilder<CarDataBloc, CarDataState>(builder: (context, state) {
+            if (state is CarDataInitialState) {
+              return CircularProgressIndicator();
+            } else if (state is CarDataLoadingState) {
+              return CircularProgressIndicator();
+            } else if (state is CarDataErrorState) {
+              return Text(state.message);
+            } else if (state is CarDataLoadedState) {
+              return BlocProvider(
+                  create: (_) => CarLookupBloc(repository: CarLookupRepositoryImpl()),
+                  child: CarLookupWidget(manufacturers: state.manufacturers));
             } else {
-              return Text('did not work');
+              return Text("Nothing Happened");
             }
           }),
-        ],
-      ),
-    );
+        ));
   }
 }

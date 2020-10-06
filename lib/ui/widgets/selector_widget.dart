@@ -1,5 +1,5 @@
-import 'package:auto_x/bloc/car_look_up/car_look_up_bloc.dart';
-import 'package:auto_x/bloc/car_look_up/car_look_up_event.dart';
+import 'package:auto_x/bloc/car_lookup/car_lookup_bloc.dart';
+import 'package:auto_x/bloc/car_lookup/car_lookup_event.dart';
 import 'package:auto_x/data/model/car_data.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -8,14 +8,14 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 class SelectorWidget extends StatelessWidget {
   final List<CarData> carData;
-  CarLookUpBloc carLookUpBloc;
+  CarLookupBloc carLookupBloc;
   int pickerIndex = 0;
 
   SelectorWidget({@required this.carData});
 
   @override
   Widget build(BuildContext context) {
-    carLookUpBloc = BlocProvider.of<CarLookUpBloc>(context);
+    carLookupBloc = BlocProvider.of<CarLookupBloc>(context);
     return Container(
         decoration: BoxDecoration(
             boxShadow: [
@@ -45,7 +45,7 @@ class SelectorWidget extends StatelessWidget {
               hoverColor: Colors.redAccent,
               splashColor: Colors.green,
               child: Icon(Icons.forward),
-              onPressed: () => carLookUpBloc.add(determineEvent(pickerIndex))),
+              onPressed: () => carLookupBloc.add(determineEvent(pickerIndex))),
           SizedBox(height: 15)
         ]));
   }

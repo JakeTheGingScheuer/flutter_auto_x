@@ -16,6 +16,7 @@ class CarDataLoadingState extends CarDataState {
 
 class CarDataLoadedState extends CarDataState {
   List<Manufacturer> manufacturers;
+
   CarDataLoadedState({@required this.manufacturers});
 
   @override
@@ -24,6 +25,7 @@ class CarDataLoadedState extends CarDataState {
 
 class CarDataErrorState extends CarDataState {
   String message;
+
   CarDataErrorState({@required this.message});
 
   @override

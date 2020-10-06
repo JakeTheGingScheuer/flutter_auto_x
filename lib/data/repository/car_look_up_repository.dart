@@ -1,11 +1,11 @@
 import 'package:auto_x/data/model/car_data.dart';
 
-abstract class CarLookUpRepository {
+abstract class CarLookupRepository {
   void captureManufacturer(manufacturer);
   void captureCarModel(carModel);
 }
 
-class CarLookUpRepositoryImpl implements CarLookUpRepository{
+class CarLookupRepositoryImpl implements CarLookupRepository{
   Car carModel;
   Manufacturer manufacturer;
 

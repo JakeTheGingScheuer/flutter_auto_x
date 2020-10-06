@@ -9,7 +9,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 class SelectorWidget extends StatelessWidget {
   final List<CarData> carData;
   CarLookUpBloc carLookUpBloc;
-  final int pickerIndex = 0;
+  int pickerIndex = 0;
 
   SelectorWidget({@required this.carData});
 
@@ -36,7 +36,7 @@ class SelectorWidget extends StatelessWidget {
             child: CupertinoPicker(
                 looping: true,
                 itemExtent: 50,
-                onSelectedItemChanged: (val) => pickerIndex = val,
+                onSelectedItemChanged: (val) => this.pickerIndex = val,
                 children: pickerObjects()),
           ),
           SizedBox(height: 10),

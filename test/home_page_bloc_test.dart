@@ -24,16 +24,16 @@ void main(){
 
   test('when given FetchData event, returns homepage loading state', () async {
     CarDataBloc bloc = CarDataBloc(repository: mockHomePageRepo);
-    when(mockHomePageRepo.getCarData()).thenAnswer((_) => Future.value([fakeManufacturer]));
+    when(mockHomePageRepo.getCarDataFromApi()).thenAnswer((_) => Future.value([fakeManufacturer]));
     bloc.add(fakeFetchDataEvent);
-    await emitsExactly(bloc, [isA<HomePageLoadingState>(), isA<CarDataLoadedState>()]);
+    await emitsExactly(bloc, [isA<CarDataLoadingState>(), isA<CarDataLoadedState>()]);
   });
 
   test('when given FetchData event, and it cannot connect returns HomePageErrorState', () async {
     CarDataBloc bloc = CarDataBloc(repository: mockHomePageRepo);
-    when(mockHomePageRepo.getCarData()).thenThrow(Exception());
+    when(mockHomePageRepo.getCarDataFromApi()).thenThrow(Exception());
     bloc.add(fakeFetchDataEvent);
-    expect(() => mockHomePageRepo.getCarData(), throwsException);
-    await emitsExactly(bloc, [isA<HomePageLoadingState>(), isA<CarDataErrorState>()]);
+    expect(() => mockHomePageRepo.getCarDataFromApi(), throwsException);
+    await emitsExactly(bloc, [isA<CarDataLoadingState>(), isA<CarDataErrorState>()]);
   });
 }

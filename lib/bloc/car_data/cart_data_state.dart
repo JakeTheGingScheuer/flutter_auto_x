@@ -9,7 +9,7 @@ class CarDataInitialState extends CarDataState {
   List<Object> get props => [];
 }
 
-class HomePageLoadingState extends CarDataState {
+class CarDataLoadingState extends CarDataState {
   @override
   List<Object> get props => [];
 }

@@ -5,6 +5,7 @@ import 'package:auto_x/bloc/car_look_up/car_look_up_bloc.dart';
 import 'package:auto_x/data/repository/car_look_up_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:localstorage/localstorage.dart';
 import 'car_look_up_page.dart';
 
 class HomePage extends StatefulWidget {
@@ -32,7 +33,7 @@ class _HomePageState extends State<HomePage> {
               builder:(context, state){
                 if (state is CarDataInitialState){
                   return CircularProgressIndicator();
-                } else if (state is HomePageLoadingState) {
+                } else if (state is CarDataLoadingState) {
                   return CircularProgressIndicator();
                 } else if (state is CarDataErrorState) {
                   return Text(state.message);

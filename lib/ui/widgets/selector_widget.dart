@@ -7,14 +7,14 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class SelectorWidget extends StatelessWidget {
-  List<CarData> carData;
+  final List<CarData> carData;
   CarLookUpBloc carLookUpBloc;
+  final int pickerIndex = 0;
 
   SelectorWidget({@required this.carData});
 
   @override
   Widget build(BuildContext context) {
-    var pickerIndex = 0;
     carLookUpBloc = BlocProvider.of<CarLookUpBloc>(context);
     return Container(
         decoration: BoxDecoration(
@@ -34,6 +34,7 @@ class SelectorWidget extends StatelessWidget {
           Container(
             height: 200,
             child: CupertinoPicker(
+                looping: true,
                 itemExtent: 50,
                 onSelectedItemChanged: (val) => pickerIndex = val,
                 children: pickerObjects()),
@@ -50,7 +51,7 @@ class SelectorWidget extends StatelessWidget {
   }
 
   determineEvent(int index){
-    if(carData[0] is Manufacturer){
+    if(carData[index] is Manufacturer){
       return SelectManufacturerEvent(manufacturer: carData[index]);
     } else {
       return SelectCarModelEvent(car: carData[index]);

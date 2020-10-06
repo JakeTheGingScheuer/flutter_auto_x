@@ -39,9 +39,9 @@ class _CarLookUpState extends State<CarLookUpPage> {
           SizedBox(height: 10),
           BlocBuilder<CarLookUpBloc, CarLookUpState>(builder: (context, state) {
             if (state is CarLookUpInitialState) {
-              return new SelectorWidget(carData: manufacturers);
+              return SelectorWidget(carData: manufacturers);
             } else if (state is CarLookUpSelectedManufacturerState) {
-              return new SelectorWidget(carData: state.manufacturer.carModels);
+              return SelectorWidget(carData: state.manufacturer.carModels);
             } else if (state is CarLookUpSelectedModelState) {
               return GestureDetector(
                   onTap: () => carLookUpBloc.add(ResetEvent()),

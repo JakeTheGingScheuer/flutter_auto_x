@@ -35,7 +35,7 @@ class _CarLookUpState extends State<CarLookUpPage> {
       child: Column(
         children: [
           SizedBox(height: 10),
-          Image(height: 100, image: AssetImage('assets/scca-logo.jpg')),
+          Image(height: 200, image: AssetImage('assets/scca-logo.jpg')),
           SizedBox(height: 10),
           BlocBuilder<CarLookUpBloc, CarLookUpState>(builder: (context, state) {
             if (state is CarLookUpInitialState) {

@@ -1,10 +1,10 @@
+import 'package:auto_x/bloc/car_data/car_data_bloc.dart';
+import 'package:auto_x/bloc/car_data/car_data_event.dart';
+import 'package:auto_x/bloc/car_data/cart_data_state.dart';
 import 'package:auto_x/bloc/car_look_up/car_look_up_bloc.dart';
-import 'package:auto_x/bloc/homepage/home_page_event.dart';
-import 'package:auto_x/bloc/homepage/home_page_state.dart';
 import 'package:auto_x/data/repository/car_look_up_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../bloc/homepage/home_page_bloc.dart';
 import 'car_look_up_page.dart';
 
 class HomePage extends StatefulWidget {
@@ -13,13 +13,13 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  HomePageBloc homePageBloc;
+  CarDataBloc carDataBloc;
 
   @override
   void initState() {
     super.initState();
-    homePageBloc = BlocProvider.of<HomePageBloc>(context);
-    homePageBloc.add(FetchCarDataEvent());
+    carDataBloc = BlocProvider.of<CarDataBloc>(context);
+    carDataBloc.add(FetchCarDataEvent());
   }
 
   @override
@@ -28,15 +28,15 @@ class _HomePageState extends State<HomePage> {
         resizeToAvoidBottomPadding: true,
         appBar: AppBar(title: Text('Street Class Lookup')),
           body: Center(
-            child: BlocBuilder<HomePageBloc, HomePageState>(
+            child: BlocBuilder<CarDataBloc, CarDataState>(
               builder:(context, state){
-                if (state is HomePageInitialState){
+                if (state is CarDataInitialState){
                   return CircularProgressIndicator();
                 } else if (state is HomePageLoadingState) {
                   return CircularProgressIndicator();
-                } else if (state is HomePageErrorState) {
+                } else if (state is CarDataErrorState) {
                   return Text(state.message);
-                } else if (state is HomePageLoadedState) {
+                } else if (state is CarDataLoadedState) {
                   return BlocProvider(
                       create: (_) => CarLookUpBloc(repository: CarLookUpRepositoryImpl()),
                       child: CarLookUpPage(manufacturers: state.manufacturers)

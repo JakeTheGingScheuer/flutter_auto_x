@@ -1,39 +1,39 @@
-import 'package:auto_x/bloc/homepage/home_page_bloc.dart';
-import 'package:auto_x/bloc/homepage/home_page_event.dart';
-import 'package:auto_x/bloc/homepage/home_page_state.dart';
-import 'package:auto_x/data/model/manufacturer.dart';
-import 'package:auto_x/data/repository/manufacturer_repository.dart';
+import 'package:auto_x/bloc/car_data/car_data_bloc.dart';
+import 'package:auto_x/bloc/car_data/car_data_event.dart';
+import 'package:auto_x/bloc/car_data/cart_data_state.dart';
+import 'package:auto_x/data/model/car_data.dart';
+import 'package:auto_x/data/repository/car_data_repository.dart';
 import 'package:bloc_test/bloc_test.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 
-class MockHomePageBloc extends MockBloc<HomePageEvent, HomePageState> implements HomePageBloc {}
-class MockHomePageRepo extends Mock implements ManufacturerRepository{}
+class MockCarDataBloc extends MockBloc<CarDataEvent, CarDataState> implements CarDataBloc {}
+class MockCarDataRepo extends Mock implements CarDataRepository{}
 
-HomePageEvent fakeFetchDataEvent = FetchCarDataEvent();
+CarDataEvent fakeFetchDataEvent = FetchCarDataEvent();
 Manufacturer fakeManufacturer = Manufacturer();
 
 
 void main(){
 
-  MockHomePageRepo mockHomePageRepo;
+  MockCarDataRepo mockHomePageRepo;
 
   setUp(() {
-    mockHomePageRepo = MockHomePageRepo();
+    mockHomePageRepo = MockCarDataRepo();
   });
 
   test('when given FetchData event, returns homepage loading state', () async {
-    HomePageBloc bloc = HomePageBloc(repository: mockHomePageRepo);
-    when(mockHomePageRepo.getManufacturers()).thenAnswer((_) => Future.value([fakeManufacturer]));
+    CarDataBloc bloc = CarDataBloc(repository: mockHomePageRepo);
+    when(mockHomePageRepo.getCarData()).thenAnswer((_) => Future.value([fakeManufacturer]));
     bloc.add(fakeFetchDataEvent);
-    await emitsExactly(bloc, [isA<HomePageLoadingState>(), isA<HomePageLoadedState>()]);
+    await emitsExactly(bloc, [isA<HomePageLoadingState>(), isA<CarDataLoadedState>()]);
   });
 
   test('when given FetchData event, and it cannot connect returns HomePageErrorState', () async {
-    HomePageBloc bloc = HomePageBloc(repository: mockHomePageRepo);
-    when(mockHomePageRepo.getManufacturers()).thenThrow(Exception());
+    CarDataBloc bloc = CarDataBloc(repository: mockHomePageRepo);
+    when(mockHomePageRepo.getCarData()).thenThrow(Exception());
     bloc.add(fakeFetchDataEvent);
-    expect(() => mockHomePageRepo.getManufacturers(), throwsException);
-    await emitsExactly(bloc, [isA<HomePageLoadingState>(), isA<HomePageErrorState>()]);
+    expect(() => mockHomePageRepo.getCarData(), throwsException);
+    await emitsExactly(bloc, [isA<HomePageLoadingState>(), isA<CarDataErrorState>()]);
   });
 }

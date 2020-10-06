@@ -1,7 +1,7 @@
 import 'package:auto_x/bloc/car_look_up/car_look_up_bloc.dart';
 import 'package:auto_x/bloc/car_look_up/car_look_up_event.dart';
 import 'package:auto_x/bloc/car_look_up/car_look_up_state.dart';
-import 'package:auto_x/data/model/car.dart';
+import 'package:auto_x/data/model/car_data.dart';
 import 'package:auto_x/ui/widgets/selector_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';

@@ -1,11 +1,11 @@
-import 'car.dart';
+import 'car_data.dart';
 
-class ApiResultModel {
+class CarDataApiResultModel {
   List<Manufacturer> manufacturers;
 
-  ApiResultModel({this.manufacturers});
+  CarDataApiResultModel({this.manufacturers});
 
-  ApiResultModel.fromJson(Map<String, dynamic> json) {
+  CarDataApiResultModel.fromJson(Map<String, dynamic> json) {
 
     if (json['manufacturers'] != null)
       manufacturers = new List<Manufacturer>();

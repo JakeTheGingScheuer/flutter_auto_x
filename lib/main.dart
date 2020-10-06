@@ -1,8 +1,8 @@
-import 'package:auto_x/data/repository/manufacturer_repository.dart';
+import 'package:auto_x/data/repository/car_data_repository.dart';
 import 'package:auto_x/ui/pages/home_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'bloc/homepage/home_page_bloc.dart';
+import 'bloc/car_data/car_data_bloc.dart';
 
 void main() => runApp(App());
 
@@ -13,7 +13,7 @@ class App extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: myTheme(),
       home: BlocProvider(
-          create: (_) => HomePageBloc(repository: ManufacturerRepositoryImpl()),
+          create: (_) => CarDataBloc(repository: CarDataRepositoryImpl()),
           child: HomePage()
       )
     );

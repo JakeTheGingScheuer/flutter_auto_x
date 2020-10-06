@@ -1,4 +1,4 @@
-import 'package:auto_x/data/model/car.dart';
+import 'package:auto_x/data/model/car_data.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 

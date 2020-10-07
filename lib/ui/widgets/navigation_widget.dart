@@ -28,15 +28,15 @@ class _NavigationState extends State<NavigationWidget> {
           Image(height: 200, image: AssetImage('assets/scca-logo.jpg')),
           SizedBox(height: 20),
           RaisedButton(
-            child: Text('Street Class Lookup'),
+            child: Text('Street Class Lookup', style: TextStyle(fontWeight: FontWeight.bold)),
             onPressed: () => navigationBloc.add(NavigateToCarLookupEvent()),
           ),
           RaisedButton(
-            child: Text('Modification Allowances'),
+            child: Text('Modification Allowances', style: TextStyle(fontWeight: FontWeight.bold)),
             onPressed: () => navigationBloc.add(NavigateToModsEvent()),
           ),
           RaisedButton(
-            child: Text('Events Lookup'),
+            child: Text('Events Lookup', style: TextStyle(fontWeight: FontWeight.bold)),
             onPressed: () => navigationBloc.add(NavigateToEventsEvent()),
           ), SizedBox(height:120)
         ],

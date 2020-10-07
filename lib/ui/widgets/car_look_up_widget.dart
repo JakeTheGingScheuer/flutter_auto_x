@@ -1,6 +1,7 @@
 import 'package:auto_x/bloc/car_lookup/car_lookup_bloc.dart';
-import 'package:auto_x/bloc/car_lookup/car_lookup_event.dart';
 import 'package:auto_x/bloc/car_lookup/car_lookup_state.dart';
+import 'package:auto_x/bloc/navigation/navigation_bloc.dart';
+import 'package:auto_x/bloc/navigation/navigation_event.dart';
 import 'package:auto_x/data/model/car_data.dart';
 import 'package:auto_x/ui/widgets/car_class_result_widget.dart';
 import 'package:auto_x/ui/widgets/selector_widget.dart';
@@ -19,6 +20,7 @@ class CarLookupWidget extends StatefulWidget {
 
 class _CarLookupState extends State<CarLookupWidget> {
   CarLookupBloc carLookupBloc;
+  NavigationBloc navigationBloc;
   final List<Manufacturer> manufacturers;
 
   _CarLookupState({@required this.manufacturers});
@@ -27,6 +29,7 @@ class _CarLookupState extends State<CarLookupWidget> {
   void initState() {
     super.initState();
     carLookupBloc = BlocProvider.of<CarLookupBloc>(context);
+    navigationBloc = BlocProvider.of<NavigationBloc>(context);
   }
 
   @override
@@ -40,7 +43,7 @@ class _CarLookupState extends State<CarLookupWidget> {
             child: IconButton(
               icon: Icon(Icons.home),
               color: Colors.red,
-              onPressed: () => carLookupBloc.add(ResetEvent()),
+              onPressed: () => navigationBloc.add(NavigateHomeEvent()),
             ),
           ),
           SizedBox(height: 40),

@@ -16,6 +16,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   NavigationBloc navigationBloc;
+  final CarDataRepository repo = CarDataRepositoryImpl();
 
   @override
   void initState() {
@@ -37,7 +38,7 @@ class _HomePageState extends State<HomePage> {
                   return Text("Mods Page");
                 } else if (state is NavigateToCarLookupState) {
                   return BlocProvider(
-                      create: (_) => CarDataBloc(repository: CarDataRepositoryImpl()), child: CarLookupPage());
+                      create: (_) => CarDataBloc(repository: repo), child: CarLookupPage());
                 } else {
                   return NavigationWidget();
                 }

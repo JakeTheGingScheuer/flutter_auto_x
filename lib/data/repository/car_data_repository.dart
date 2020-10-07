@@ -15,6 +15,7 @@ abstract class CarDataRepository {
 class CarDataRepositoryImpl implements CarDataRepository {
 
   final LocalStorage deviceStorage = LocalStorage('device_storage');
+  bool onBootUp = true;
 
   @override
   Future<List<Manufacturer>> getCarDataFromApi() async {
@@ -23,6 +24,7 @@ class CarDataRepositoryImpl implements CarDataRepository {
       var data = json.decode(response.body);
       deviceStorage.setItem(AppStrings.localStorageDocument, data);
       List<Manufacturer> manufacturers = CarDataApiResultModel.fromJson(data).manufacturers;
+      onBootUp = false;
       return manufacturers;
     } else {
       throw Exception();
@@ -43,9 +45,13 @@ class CarDataRepositoryImpl implements CarDataRepository {
 
   @override
   Future<List<Manufacturer>> getCarData() async {
-    try {
-      return await getCarDataFromApi();
-    } catch (e) {
+    if(onBootUp){
+      try {
+        return await getCarDataFromApi();
+      } catch (e) {
+        return await getCarDataFromLocalStorage();
+      }
+    } else {
       return await getCarDataFromLocalStorage();
     }
   }

@@ -5,6 +5,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter/services.dart';
 
 class SelectorWidget extends StatelessWidget {
   final List<CarData> carData;
@@ -36,18 +37,23 @@ class SelectorWidget extends StatelessWidget {
             child: CupertinoPicker(
                 looping: true,
                 itemExtent: 50,
-                onSelectedItemChanged: (val) => this.pickerIndex = val,
+                onSelectedItemChanged: (val) => _setIndex(val),
                 children: pickerObjects()),
           ),
           SizedBox(height: 10),
           FloatingActionButton(
               backgroundColor: Colors.red,
               hoverColor: Colors.redAccent,
-              splashColor: Colors.green,
+              splashColor: Colors.black45,
               child: Icon(Icons.forward),
               onPressed: () => carLookupBloc.add(determineEvent(pickerIndex))),
           SizedBox(height: 15)
         ]));
+  }
+
+  _setIndex(val){
+    this.pickerIndex = val;
+    HapticFeedback.selectionClick();
   }
 
   determineEvent(int index){

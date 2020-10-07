@@ -16,3 +16,8 @@ class NavigateToModsEvent extends NavigationEvent {
   @override
   List<Object> get props => null;
 }
+
+class NavigateHomeEvent extends NavigationEvent {
+  @override
+  List<Object> get props => null;
+}

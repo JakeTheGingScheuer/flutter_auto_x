@@ -24,11 +24,7 @@ class _CarLookupPageState extends State<CarLookupPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        resizeToAvoidBottomPadding: true,
-        appBar: AppBar(title: Text('Street Class Lookup')),
-        body: Center(
-          child: BlocBuilder<CarDataBloc, CarDataState>(builder: (context, state) {
+    return BlocBuilder<CarDataBloc, CarDataState>(builder: (context, state) {
             if (state is CarDataInitialState) {
               return CircularProgressIndicator();
             } else if (state is CarDataLoadingState) {
@@ -42,7 +38,6 @@ class _CarLookupPageState extends State<CarLookupPage> {
             } else {
               return Text("Nothing Happened");
             }
-          }),
-        ));
+          });
   }
 }

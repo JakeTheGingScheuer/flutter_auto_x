@@ -19,7 +19,6 @@ class CarDataRepositoryImpl implements CarDataRepository {
   @override
   Future<List<Manufacturer>> getCarDataFromApi() async {
     var response = await http.get(AppStrings.carDataUrl);
-    print(response.statusCode);
     if (response.statusCode == 200) {
       var data = json.decode(response.body);
       deviceStorage.setItem(AppStrings.localStorageDocument, data);

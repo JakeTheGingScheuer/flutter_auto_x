@@ -2,6 +2,7 @@ import 'package:auto_x/bloc/car_lookup/car_lookup_bloc.dart';
 import 'package:auto_x/bloc/car_lookup/car_lookup_event.dart';
 import 'package:auto_x/bloc/car_lookup/car_lookup_state.dart';
 import 'package:auto_x/data/model/car_data.dart';
+import 'package:auto_x/ui/widgets/car_class_result_widget.dart';
 import 'package:auto_x/ui/widgets/selector_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -42,13 +43,7 @@ class _CarLookupState extends State<CarLookupWidget> {
             } else if (state is CarLookupSelectedManufacturerState) {
               return SelectorWidget(carData: state.manufacturer.carModels);
             } else if (state is CarLookupSelectedModelState) {
-              return GestureDetector(
-                  onTap: () => carLookupBloc.add(ResetEvent()),
-                  child: Center(
-                      child: Text(state.car.carClass,
-                          style: TextStyle(fontSize: 36, fontWeight: FontWeight.bold, color: Colors.red, shadows: [
-                            Shadow(color: Colors.grey.withOpacity(0.5), blurRadius: 7, offset: Offset(0, 3))
-                          ]))));
+              return CarClassResult(carClass: state.car.carClass);
             } else {
               return Text('did not work');
             }

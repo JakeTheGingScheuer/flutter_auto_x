@@ -26,6 +26,7 @@ class _NavigationState extends State<NavigationWidget> {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           Image(height: 200, image: AssetImage('assets/scca-logo.jpg')),
+          SizedBox(height: 20),
           RaisedButton(
             child: Text('Street Class Lookup'),
             onPressed: () => navigationBloc.add(NavigateToCarLookupEvent()),
@@ -37,7 +38,7 @@ class _NavigationState extends State<NavigationWidget> {
           RaisedButton(
             child: Text('Events Lookup'),
             onPressed: () => navigationBloc.add(NavigateToEventsEvent()),
-          ), SizedBox(height:100)
+          ), SizedBox(height:120)
         ],
       ),
     );

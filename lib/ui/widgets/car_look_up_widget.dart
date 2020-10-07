@@ -34,9 +34,18 @@ class _CarLookupState extends State<CarLookupWidget> {
     return Container(
       child: Column(
         children: [
-          SizedBox(height: 10),
-          Image(height: 200, image: AssetImage('assets/scca-logo.jpg')),
-          SizedBox(height: 10),
+          SizedBox(height: 20),
+          Container(
+            alignment: Alignment.topLeft,
+            child: IconButton(
+              icon: Icon(Icons.home),
+              color: Colors.red,
+              onPressed: () => carLookupBloc.add(ResetEvent()),
+            ),
+          ),
+          SizedBox(height: 40),
+          Image(width: 250, image: AssetImage('assets/scca-logo.jpg')),
+          SizedBox(height: 30),
           BlocBuilder<CarLookupBloc, CarLookupState>(builder: (context, state) {
             if (state is CarLookupInitialState) {
               return SelectorWidget(carData: manufacturers);

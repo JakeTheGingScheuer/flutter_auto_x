@@ -15,8 +15,6 @@ dependencies:
   bloc: 4.0.0
   flutter_bloc: ^4.0.0
   localstorage: ^2.0.0
-  sa_stateless_animation: ^1.0.3
-
 
 dev_dependencies:
   flutter_test:

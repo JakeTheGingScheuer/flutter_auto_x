@@ -55,7 +55,9 @@ class _CarLookupState extends State<CarLookupWidget> {
             } else if (state is CarLookupSelectedManufacturerState) {
               return SelectorWidget(carData: state.manufacturer.carModels);
             } else if (state is CarLookupSelectedModelState) {
-              return CarClassResult(carClass: state.car.carClass);
+              CarClassResult result = CarClassResult(carClass: state.car.carClass);
+              carLookupBloc.close();
+              return result;
             } else {
               return Text('did not work');
             }

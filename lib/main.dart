@@ -16,5 +16,5 @@ class App extends StatelessWidget {
 }
 
 myTheme() {
-  return ThemeData(primaryColor: Colors.white, accentColor: Colors.red, fontFamily: 'Ubuntu');
+  return ThemeData(primaryColor: Colors.white, accentColor: Colors.red, fontFamily: 'Ubuntu', scaffoldBackgroundColor: Colors.white);
 }

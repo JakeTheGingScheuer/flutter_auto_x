@@ -1,6 +1,10 @@
-class EventDataRepository{
+abstract class EventDataRepository{
+  getEventDataFromApi();
+}
 
-  getEventDataFromApi(){
-    return null;
+class EventDataRepositoryImpl implements EventDataRepository {
+  @override
+  getEventDataFromApi() {
+    return "yes";
   }
 }

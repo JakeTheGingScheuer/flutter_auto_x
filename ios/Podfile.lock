@@ -1,4 +1,6 @@
 PODS:
+  - audioplayers (0.0.1):
+    - Flutter
   - Flutter (1.0.0)
   - flutter_plugin_pdf_viewer (1.0.5):
     - Flutter
@@ -12,6 +14,7 @@ PODS:
     - FMDB (~> 2.7.2)
 
 DEPENDENCIES:
+  - audioplayers (from `.symlinks/plugins/audioplayers/ios`)
   - Flutter (from `Flutter`)
   - flutter_plugin_pdf_viewer (from `.symlinks/plugins/flutter_plugin_pdf_viewer/ios`)
   - path_provider (from `.symlinks/plugins/path_provider/ios`)
@@ -22,6 +25,8 @@ SPEC REPOS:
     - FMDB
 
 EXTERNAL SOURCES:
+  audioplayers:
+    :path: ".symlinks/plugins/audioplayers/ios"
   Flutter:
     :path: Flutter
   flutter_plugin_pdf_viewer:
@@ -32,6 +37,7 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/sqflite/ios"
 
 SPEC CHECKSUMS:
+  audioplayers: 53f0f30789b10ab2009771c6c79def00980945e4
   Flutter: 0e3d915762c693b495b44d77113d4970485de6ec
   flutter_plugin_pdf_viewer: 7d8e3a03f42d346b2af8840f980b7de95ad5732a
   FMDB: 2ce00b547f966261cd18927a3ddb07cb6f3db82a

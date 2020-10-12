@@ -1,4 +1,6 @@
+import 'package:auto_x/res/screen_dimensions.dart';
 import 'package:auto_x/ui/widgets/home_page_button.dart';
+import 'package:auto_x/ui/widgets/spinner.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_plugin_pdf_viewer/flutter_plugin_pdf_viewer.dart';
@@ -39,7 +41,7 @@ class _PdfPageState extends State<PdfPage>{
 
   @override
   Widget build(BuildContext context) {
-    return _loading ? CircularProgressIndicator() : pdf();
+    return _loading ? Spinner() : pdf();
   }
 
   pdf(){
@@ -48,8 +50,8 @@ class _PdfPageState extends State<PdfPage>{
         SizedBox(height: 20),
         HomePageButton(),
         Container(
-          height: 500,
-            width: 300,
+          height: screenHeight(context)*.89,
+            width: screenWidth(context),
             child: PDFViewer(document: _doc))
       ],
     );

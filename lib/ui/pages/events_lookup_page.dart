@@ -2,6 +2,7 @@ import 'package:auto_x/bloc/event_data/event_data_bloc.dart';
 import 'package:auto_x/bloc/event_data/event_data_event.dart';
 import 'package:auto_x/bloc/event_data/event_data_state.dart';
 import 'package:auto_x/ui/widgets/events_lookup_widget.dart';
+import 'package:auto_x/ui/widgets/spinner.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -29,7 +30,7 @@ class _EventsLookupPageState extends State<EventsLookupPage> {
       } else if (state is EventDataErrorState){
         return Text('Nien Nyet NO 9 Yu');
       } else {
-        return CircularProgressIndicator();
+        return Spinner();
       }
     });
   }

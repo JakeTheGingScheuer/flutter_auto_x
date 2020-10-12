@@ -1,4 +1,7 @@
+import 'package:audioplayers/audio_cache.dart';
+import 'package:audioplayers/audioplayers.dart';
 import 'package:auto_x/res/screen_dimensions.dart';
+import 'package:auto_x/res/strings/strings.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -15,6 +18,8 @@ class EventsLookupWidget extends StatelessWidget {
           SizedBox(height: 20),
           HomePageButton(),
           SizedBox(height: 40),
+          Image(height: 80, image: AssetImage(AppStrings.motorSportReg)),
+          SizedBox(height: 20),
           Row(
             children: [
               marginSpace(context),
@@ -49,7 +54,9 @@ class EventsLookupWidget extends StatelessWidget {
               hoverColor: Colors.redAccent,
               splashColor: Colors.black45,
               child: Icon(Icons.forward),
-              onPressed: () => null),
+              onPressed: () async {
+                return await playLocalAsset();
+              }),
     ]));
   }
 
@@ -69,5 +76,10 @@ class EventsLookupWidget extends StatelessWidget {
         fontWeight: FontWeight.bold,
         shadows: [Shadow(color: Colors.grey.withOpacity(0.5), blurRadius: 7, offset: Offset(0, 3))]
     );
+  }
+
+  Future<AudioPlayer> playLocalAsset() async {
+    AudioCache cache = new AudioCache();
+    return await cache.play(AppStrings.rick);
   }
 }

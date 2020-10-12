@@ -16,6 +16,7 @@ dependencies:
   flutter_bloc: ^4.0.0
   localstorage: ^2.0.0
   flutter_plugin_pdf_viewer: any
+  audioplayers: ^0.16.1
 
 dev_dependencies:
   flutter_test:

@@ -14,22 +14,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'events_lookup_page.dart';
 
-class HomePage extends StatefulWidget {
+class HomePage extends StatelessWidget {
 
-  @override
-  _HomePageState createState() => _HomePageState();
-}
-
-class _HomePageState extends State<HomePage> {
-  NavigationBloc navigationBloc;
   final CarDataRepository carDataRepo = CarDataRepositoryImpl();
   final EventDataRepository eventDataRepo = EventDataRepositoryImpl();
-
-  @override
-  void initState() {
-    super.initState();
-    navigationBloc = BlocProvider.of<NavigationBloc>(context);
-  }
 
   @override
   Widget build(BuildContext context) {

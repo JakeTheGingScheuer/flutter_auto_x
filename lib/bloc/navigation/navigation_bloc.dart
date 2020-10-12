@@ -14,6 +14,10 @@ class NavigationBloc extends Bloc<NavigationEvent, NavigationState> {
       yield NavigateToModsState();
     } else if (event is NavigateToEventsEvent) {
       yield NavigateToEventsState();
+    } else if (event is NavigateToHelmetsEvent) {
+      yield NavigateToHelmetsState();
+    } else if (event is NavigateToRuleBookEvent) {
+      yield NavigateToRuleBookState();
     } else {
       yield NavigationInitialState();
     }

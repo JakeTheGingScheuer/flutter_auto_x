@@ -31,6 +31,10 @@ class HomePage extends StatelessWidget {
                       create: (_) => EventDataBloc(repository: eventDataRepo), child: EventsLookupPage());
                 } else if (state is NavigateToModsState) {
                   return PdfPage(file: AppStrings.modsInfo);
+                } else if (state is NavigateToHelmetsState) {
+                  return PdfPage(file: AppStrings.helmetInfo);
+                } else if (state is NavigateToRuleBookState) {
+                  return PdfPage(file: AppStrings.ruleBook);
                 } else if (state is NavigateToCarLookupState) {
                   return BlocProvider(
                       create: (_) => CarDataBloc(repository: carDataRepo), child: CarLookupPage());

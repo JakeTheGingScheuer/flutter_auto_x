@@ -26,8 +26,9 @@ class _NavigationState extends State<NavigationWidget> {
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
+          SizedBox(height: 90),
           Image(height: 200, image: AssetImage(AppStrings.sccaLogo)),
-          SizedBox(height: 20),
+          SizedBox(height: 10),
           RaisedButton(
             child: Text('Street Class Lookup', style: TextStyle(fontWeight: FontWeight.bold)),
             onPressed: () => navigationBloc.add(NavigateToCarLookupEvent()),
@@ -35,6 +36,14 @@ class _NavigationState extends State<NavigationWidget> {
           RaisedButton(
             child: Text('Modification Allowances', style: TextStyle(fontWeight: FontWeight.bold)),
             onPressed: () => navigationBloc.add(NavigateToModsEvent()),
+          ),
+          RaisedButton(
+            child: Text('Helmet Info', style: TextStyle(fontWeight: FontWeight.bold)),
+            onPressed: () => navigationBloc.add(NavigateToHelmetsEvent()),
+          ),
+          RaisedButton(
+            child: Text('Rule Book', style: TextStyle(fontWeight: FontWeight.bold)),
+            onPressed: () => navigationBloc.add(NavigateToRuleBookEvent()),
           ),
           RaisedButton(
             child: Text('Events Lookup', style: TextStyle(fontWeight: FontWeight.bold)),

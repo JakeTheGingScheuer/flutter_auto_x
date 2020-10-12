@@ -7,3 +7,7 @@ class NavigateToCarLookupState extends NavigationState {}
 class NavigateToEventsState extends NavigationState {}
 
 class NavigateToModsState extends NavigationState {}
+
+class NavigateToHelmetsState extends NavigationState {}
+
+class NavigateToRuleBookState extends NavigationState {}

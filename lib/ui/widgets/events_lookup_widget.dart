@@ -2,13 +2,18 @@ import 'package:auto_x/res/screen_dimensions.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
 
+import 'home_page_button.dart';
+
 class EventsLookupWidget extends StatelessWidget {
   int pickerIndex = 0;
 
   @override
   Widget build(BuildContext context) {
     return Container(
-        child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+        child: Column( children: [
+          SizedBox(height: 20),
+          HomePageButton(),
+          SizedBox(height: 40),
           Row(
             children: [
               marginSpace(context),

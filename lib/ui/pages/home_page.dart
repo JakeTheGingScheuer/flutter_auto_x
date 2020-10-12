@@ -1,11 +1,12 @@
 import 'package:auto_x/bloc/car_data/car_data_bloc.dart';
 import 'package:auto_x/bloc/event_data/event_data_bloc.dart';
 import 'package:auto_x/bloc/navigation/navigation_bloc.dart';
-import 'package:auto_x/bloc/navigation/navigation_event.dart';
 import 'package:auto_x/bloc/navigation/navigation_state.dart';
 import 'package:auto_x/data/repository/car_data_repository.dart';
 import 'package:auto_x/data/repository/event_data_repository.dart';
+import 'package:auto_x/res/strings/strings.dart';
 import 'package:auto_x/ui/pages/car_look_up_page.dart';
+import 'package:auto_x/ui/pages/pdf_page.dart';
 import 'package:auto_x/ui/widgets/navigation_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -41,12 +42,13 @@ class _HomePageState extends State<HomePage> {
                   return BlocProvider(
                       create: (_) => EventDataBloc(repository: eventDataRepo), child: EventsLookupPage());
                 } else if (state is NavigateToModsState) {
-                  return Text("Mods Page");
+                  return PdfPage(file: AppStrings.modsInfo);
                 } else if (state is NavigateToCarLookupState) {
                   return BlocProvider(
                       create: (_) => CarDataBloc(repository: carDataRepo), child: CarLookupPage());
                 } else {
-                  return NavigationWidget();
+                  return
+                    NavigationWidget();
                 }
               }),
         )

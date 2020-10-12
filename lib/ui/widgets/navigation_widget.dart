@@ -1,5 +1,6 @@
 import 'package:auto_x/bloc/navigation/navigation_bloc.dart';
 import 'package:auto_x/bloc/navigation/navigation_event.dart';
+import 'package:auto_x/res/strings/strings.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -25,7 +26,7 @@ class _NavigationState extends State<NavigationWidget> {
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          Image(height: 200, image: AssetImage('assets/scca-logo.jpg')),
+          Image(height: 200, image: AssetImage(AppStrings.sccaLogo)),
           SizedBox(height: 20),
           RaisedButton(
             child: Text('Street Class Lookup', style: TextStyle(fontWeight: FontWeight.bold)),

@@ -1,16 +1,24 @@
 # auto_x
 
-A new Flutter project.
+This is a repo for a flutter application used for quick reference of SCCA Solo/Autocross rules and events.
+It was created to gain a better understanding of Flutter and the use of BLoC pattern. Some of the ways I implemented the pattern may be considered over-abstraction and unnecessary, but was done for the sake of learning.
 
-## Getting Started
+##Patterns and features
 
-This project is a starting point for a Flutter application.
+- BLoC pattern for navigation, user input, and loading data
+- Queries external API (which I also created and deployed) only on boot
+- Caches data from API to local device storage, uses cache data if there is no internet connection
+- Animations
+- Haptic feedback
+- Audio feedback
+- PDF viewing
 
-A few resources to get you started if this is your first Flutter project:
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+## WIP Notes
+*(10/13/2020)*
+- Currently do not have access to MotorsportReg's API to lookup event data... Plays a Rick and Morty sound clip as a stand in
+- Some overflow errors
+- More testing (would have done more TDD, but the focus was on learning the Flutter and BLoC first)
+- Better layout/styling
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+ 

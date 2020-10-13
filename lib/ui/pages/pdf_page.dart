@@ -1,4 +1,3 @@
-import 'package:auto_x/res/screen_dimensions.dart';
 import 'package:auto_x/ui/widgets/home_page_button.dart';
 import 'package:auto_x/ui/widgets/spinner.dart';
 import 'package:flutter/cupertino.dart';

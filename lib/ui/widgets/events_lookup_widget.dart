@@ -5,36 +5,39 @@ import 'package:auto_x/res/strings/strings.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-
 import 'home_page_button.dart';
 
 class EventsLookupWidget extends StatelessWidget {
   int pickerIndex = 0;
+  var hFlexVal;
+  var wFlexVal;
 
   @override
   Widget build(BuildContext context) {
+    hFlexVal = MediaQuery.of(context).size.height*0.05;
+    wFlexVal = MediaQuery.of(context).size.width*0.1;
     return Container(
         child: Column( children: [
-          SizedBox(height: 20),
+          SizedBox(height: hFlexVal),
           HomePageButton(),
-          SizedBox(height: 40),
-          Image(height: 80, image: AssetImage(AppStrings.motorSportReg)),
-          SizedBox(height: 20),
+          SizedBox(height: 2*hFlexVal),
+          Image(width: 8*wFlexVal, image: AssetImage(AppStrings.motorSportReg)),
+          SizedBox(height: hFlexVal),
           Row(
             children: [
               marginSpace(context),
-              Container(width: screenWidth(context) * 0.2, child: Text('Zip Code', style: inputTitleStyle())),
+              Container(width: 2*wFlexVal, child: Text('Zip Code', style: inputTitleStyle())),
               marginSpace(context),
-              Container(width: screenWidth(context) * 0.5, child: CupertinoTextField(keyboardType: TextInputType.number)),
+              Container(width: 5*wFlexVal, child: CupertinoTextField(keyboardType: TextInputType.number)),
               marginSpace(context)
             ],
           ),
-          SizedBox(height: screenWidth(context)*0.1),
+          SizedBox(height: hFlexVal),
           Text('Radius', style: inputTitleStyle()),
-          SizedBox(height: screenWidth(context)*0.05),
+          SizedBox(height: hFlexVal),
           Container(
-            width: screenWidth(context)*0.8,
-            height: screenHeight(context)*0.15,
+            width: 8*wFlexVal,
+            height: 2*hFlexVal,
             child: CupertinoPicker(
               looping: true,
               itemExtent: 30,
@@ -48,7 +51,7 @@ class EventsLookupWidget extends StatelessWidget {
               ],
             ),
           ),
-          SizedBox(height: 40),
+          SizedBox(height: hFlexVal),
           FloatingActionButton(
               backgroundColor: Colors.red,
               hoverColor: Colors.redAccent,
@@ -63,7 +66,6 @@ class EventsLookupWidget extends StatelessWidget {
   _setIndex(val) {
     this.pickerIndex = val;
     HapticFeedback.selectionClick();
-    print(val);
   }
 
   pickerObject(value) {

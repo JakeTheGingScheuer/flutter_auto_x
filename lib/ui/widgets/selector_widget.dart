@@ -11,11 +11,15 @@ class SelectorWidget extends StatelessWidget {
   final List<CarData> carData;
   CarLookupBloc carLookupBloc;
   int pickerIndex = 0;
+  var hFlexVal;
+  var wFlexVal;
 
   SelectorWidget({@required this.carData});
 
   @override
   Widget build(BuildContext context) {
+    hFlexVal = MediaQuery.of(context).size.height*0.05;
+    wFlexVal = MediaQuery.of(context).size.width*0.1;
     carLookupBloc = BlocProvider.of<CarLookupBloc>(context);
     return Container(
         decoration: BoxDecoration(
@@ -29,25 +33,25 @@ class SelectorWidget extends StatelessWidget {
             ],
             borderRadius: BorderRadius.all(Radius.circular(20)),
             color: Color.fromRGBO(225, 225, 225, 1)),
-        width: 300,
+        width: 9*hFlexVal,
         child: Column(children: [
-          SizedBox(height: 10),
+          SizedBox(height: 0.5*hFlexVal),
           Container(
-            height: 200,
+            height: 6*hFlexVal,
             child: CupertinoPicker(
                 looping: true,
-                itemExtent: 50,
+                itemExtent: 1.5*hFlexVal,
                 onSelectedItemChanged: (val) => _setIndex(val),
                 children: pickerObjects()),
           ),
-          SizedBox(height: 10),
+          SizedBox(height: 0.5*hFlexVal),
           FloatingActionButton(
               backgroundColor: Colors.red,
               hoverColor: Colors.redAccent,
               splashColor: Colors.black45,
               child: Icon(Icons.forward),
               onPressed: () => carLookupBloc.add(determineEvent(pickerIndex))),
-          SizedBox(height: 15)
+          SizedBox(height: 0.5*hFlexVal)
         ]));
   }
 
@@ -57,6 +61,7 @@ class SelectorWidget extends StatelessWidget {
   }
 
   determineEvent(int index){
+    HapticFeedback.selectionClick();
     if(carData[index] is Manufacturer){
       return SelectManufacturerEvent(manufacturer: carData[index]);
     } else {

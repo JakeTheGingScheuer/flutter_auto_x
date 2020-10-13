@@ -15,6 +15,8 @@ class CarClassResultState extends State<CarClassResult> with SingleTickerProvide
   Animation<double> animation;
   Animation<Color> animColor;
   String carClass;
+  var hFlexVal;
+  var wFlexVal;
 
   CarClassResultState({@required this.carClass});
 

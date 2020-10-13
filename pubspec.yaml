@@ -17,6 +17,7 @@ dependencies:
   localstorage: ^2.0.0
   flutter_plugin_pdf_viewer: any
   audioplayers: ^0.16.1
+  flutter_launcher_icons: ^0.8.1
 
 dev_dependencies:
   flutter_test:
@@ -33,5 +34,7 @@ flutter:
       fonts:
         - asset: fonts/Ubuntu-Regular.ttf
 
-
-
+flutter_icons:
+  image_path: "assets/scca_wheel.png"
+  ios: true
+  android: true

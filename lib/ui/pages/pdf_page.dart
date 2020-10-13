@@ -47,11 +47,11 @@ class _PdfPageState extends State<PdfPage>{
   pdf(){
     return Column(
       children: [
-        SizedBox(height: 20),
+        SizedBox(height: MediaQuery.of(context).size.height*.03),
         HomePageButton(),
         Container(
-          height: screenHeight(context)*.89,
-            width: screenWidth(context),
+          height: MediaQuery.of(context).size.height*.89,
+            width: MediaQuery.of(context).size.width,
             child: PDFViewer(document: _doc))
       ],
     );

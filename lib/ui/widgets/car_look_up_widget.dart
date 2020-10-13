@@ -20,6 +20,8 @@ class CarLookupWidget extends StatefulWidget {
 class _CarLookupState extends State<CarLookupWidget> {
   CarLookupBloc carLookupBloc;
   final List<Manufacturer> manufacturers;
+  var hFlexVal;
+  var wFlexVal;
 
   _CarLookupState({@required this.manufacturers});
 
@@ -31,14 +33,16 @@ class _CarLookupState extends State<CarLookupWidget> {
 
   @override
   Widget build(BuildContext context) {
+    hFlexVal = MediaQuery.of(context).size.height*0.05;
+    wFlexVal = MediaQuery.of(context).size.width*0.1;
     return Container(
       child: Column(
         children: [
-          SizedBox(height: 20),
+          SizedBox(height: 0.5*hFlexVal),
           HomePageButton(),
-          SizedBox(height: 40),
-          Image(width: 250, image: AssetImage('assets/scca-logo.jpg')),
-          SizedBox(height: 30),
+          SizedBox(height: hFlexVal),
+          Image(width: 7*wFlexVal, image: AssetImage('assets/scca-logo.jpg')),
+          SizedBox(height: 0.5*hFlexVal),
           BlocBuilder<CarLookupBloc, CarLookupState>(builder: (context, state) {
             if (state is CarLookupInitialState) {
               return SelectorWidget(carData: manufacturers);

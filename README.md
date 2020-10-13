@@ -3,7 +3,7 @@
 This is a repo for a flutter application used for quick reference of SCCA Solo/Autocross rules and events.
 It was created to gain a better understanding of Flutter and the use of BLoC pattern. Some of the ways I implemented the pattern may be considered over-abstraction and unnecessary, but was done for the sake of learning.
 
-##Patterns and features
+## Patterns and features
 
 - BLoC pattern for navigation, user input, and loading data
 - Queries external API (which I also created and deployed) only on boot

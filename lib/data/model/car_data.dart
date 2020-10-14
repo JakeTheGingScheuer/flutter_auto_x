@@ -1,15 +1,14 @@
+import 'package:equatable/equatable.dart';
+
 abstract class CarData {
   String name;
 }
 
-class Car extends CarData{
+class Car extends Equatable implements CarData{
   String name;
   String carClass;
 
-  Car(){
-    this.name = '';
-    this.carClass = '';
-  }
+  Car({this.name, this.carClass});
 
   Car.fromJson(Map<String, dynamic> json) {
     name = json['name'];
@@ -18,23 +17,25 @@ class Car extends CarData{
     }
     carClass = json['carClass'];
   }
+
+  @override
+  List<Object> get props => [name, carClass];
 }
 
-class Manufacturer extends CarData{
+class Manufacturer extends Equatable implements CarData{
   String name;
   List<Car> carModels;
 
-  Manufacturer(){
-    this.name = '';
-    this.carModels= [];
-  }
+  Manufacturer({this.name, this.carModels});
 
   Manufacturer.fromJson(Map<String, dynamic> json) {
     name = json['name'];
-    if (json['carModels'] != null)
-      carModels = new List<Car>();
+    carModels = new List<Car>();
     json['carModels'].forEach((entry) {
       carModels.add(new Car.fromJson(entry));
     });
   }
+
+  @override
+  List<Object> get props => [name, carModels];
 }

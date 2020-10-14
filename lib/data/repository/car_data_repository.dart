@@ -1,8 +1,10 @@
 import 'dart:convert';
+import 'dart:io';
 import 'package:auto_x/data/model/car_data_api_result_model.dart';
 import 'package:auto_x/data/model/car_data.dart';
 import 'package:auto_x/res/strings/strings.dart';
 import 'package:http/http.dart' as http;
+import 'package:http/http.dart';
 import 'package:localstorage/localstorage.dart';
 
 
@@ -13,8 +15,14 @@ abstract class CarDataRepository {
 }
 
 class CarDataRepositoryImpl implements CarDataRepository {
+  Client http;
+  LocalStorage deviceStorage;
 
-  final LocalStorage deviceStorage = LocalStorage('device_storage');
+  CarDataRepositoryImpl([http, deviceStorage]){
+    this.http = http ?? Client();
+    this.deviceStorage = deviceStorage ?? LocalStorage('device_storage');
+  }
+
   bool onBootUp = true;
 
   @override

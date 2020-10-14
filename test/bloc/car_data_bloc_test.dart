@@ -26,6 +26,7 @@ void main(){
     CarDataBloc bloc = CarDataBloc(repository: mockHomePageRepo);
     when(mockHomePageRepo.getCarData()).thenAnswer((_) => Future.value([fakeManufacturer]));
     bloc.add(fakeFetchDataEvent);
+    verify(mockHomePageRepo.getCarData());
     await emitsExactly(bloc, [isA<CarDataLoadingState>(), isA<CarDataLoadedState>()]);
   });
 
@@ -33,6 +34,7 @@ void main(){
     CarDataBloc bloc = CarDataBloc(repository: mockHomePageRepo);
     when(mockHomePageRepo.getCarData()).thenThrow(Exception());
     bloc.add(fakeFetchDataEvent);
+    verify(mockHomePageRepo.getCarData());
     await emitsExactly(bloc, [isA<CarDataLoadingState>(), isA<CarDataErrorState>()]);
   });
 }

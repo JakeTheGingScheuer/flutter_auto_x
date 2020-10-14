@@ -6,6 +6,11 @@ class Car extends CarData{
   String name;
   String carClass;
 
+  Car(){
+    this.name = '';
+    this.carClass = '';
+  }
+
   Car.fromJson(Map<String, dynamic> json) {
     name = json['name'];
     if(name == 'Not Listed'){

@@ -18,7 +18,4 @@ It was created to gain a better understanding of Flutter and the use of BLoC pat
 *(10/13/2020)*
 - Currently do not have access to MotorsportReg's API to lookup event data... Plays a Rick and Morty sound clip as a stand in
 - Some overflow errors
-- More testing (would have done more TDD, but the focus was on learning the Flutter and BLoC first)
 - Better layout/styling
-
- 

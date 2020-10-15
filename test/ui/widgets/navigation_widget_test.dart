@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart';
 import 'package:mockito/mockito.dart';
-import '../utils.dart';
+import '../../utils.dart';
 
 MockHttp mockClient = MockHttp();
 MockDeviceStorage mockStorage = MockDeviceStorage();

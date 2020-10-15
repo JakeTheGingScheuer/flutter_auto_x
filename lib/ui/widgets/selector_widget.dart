@@ -13,8 +13,9 @@ class SelectorWidget extends StatelessWidget {
   int pickerIndex = 0;
   var hFlexVal;
   var wFlexVal;
+  Key key;
 
-  SelectorWidget({@required this.carData});
+  SelectorWidget({@required this.carData, this.key});
 
   @override
   Widget build(BuildContext context) {

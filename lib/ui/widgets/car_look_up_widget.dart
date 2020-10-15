@@ -45,9 +45,9 @@ class _CarLookupState extends State<CarLookupWidget> {
           SizedBox(height: 0.5*hFlexVal),
           BlocBuilder<CarLookupBloc, CarLookupState>(builder: (context, state) {
             if (state is CarLookupInitialState) {
-              return SelectorWidget(carData: manufacturers);
+              return SelectorWidget(key: Key('manufacturerPicker'), carData: manufacturers);
             } else if (state is CarLookupSelectedManufacturerState) {
-              return SelectorWidget(carData: state.manufacturer.carModels);
+              return SelectorWidget(key: Key('modelPicker'), carData: state.manufacturer.carModels);
             } else if (state is CarLookupSelectedModelState) {
               CarClassResult result = CarClassResult(carClass: state.car.carClass);
               carLookupBloc.close();

@@ -11,13 +11,19 @@ import 'package:auto_x/ui/widgets/navigation_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
+import 'package:http/http.dart';
+import 'package:localstorage/localstorage.dart';
 import 'events_lookup_page.dart';
 
 class HomePage extends StatelessWidget {
 
-  final CarDataRepository carDataRepo = CarDataRepositoryImpl();
-  final EventDataRepository eventDataRepo = EventDataRepositoryImpl();
+  CarDataRepository carDataRepo;
+  EventDataRepository eventDataRepo;
+
+  HomePage(Client httpClient, LocalStorage localStorage){
+    carDataRepo = CarDataRepositoryImpl(httpClient, localStorage);
+    eventDataRepo = EventDataRepositoryImpl();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -30,11 +36,11 @@ class HomePage extends StatelessWidget {
                   return BlocProvider(
                       create: (_) => EventDataBloc(repository: eventDataRepo), child: EventsLookupPage());
                 } else if (state is NavigateToModsState) {
-                  return PdfPage(file: AppStrings.modsInfo);
+                  return PdfPage(key: Key('modsPage'), file: AppStrings.modsInfo);
                 } else if (state is NavigateToHelmetsState) {
-                  return PdfPage(file: AppStrings.helmetInfo);
+                  return PdfPage(key: Key('helmetInfo'), file: AppStrings.helmetInfo);
                 } else if (state is NavigateToRuleBookState) {
-                  return PdfPage(file: AppStrings.ruleBook);
+                  return PdfPage(key: Key('ruleBook'), file: AppStrings.ruleBook);
                 } else if (state is NavigateToCarLookupState) {
                   return BlocProvider(
                       create: (_) => CarDataBloc(repository: carDataRepo), child: CarLookupPage());

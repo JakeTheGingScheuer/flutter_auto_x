@@ -6,8 +6,9 @@ import 'package:flutter_plugin_pdf_viewer/flutter_plugin_pdf_viewer.dart';
 
 class PdfPage extends StatefulWidget {
   String file;
+  Key key;
 
-  PdfPage({this.file});
+  PdfPage({this.file, this.key});
 
   @override
   _PdfPageState createState() => _PdfPageState(file: this.file);

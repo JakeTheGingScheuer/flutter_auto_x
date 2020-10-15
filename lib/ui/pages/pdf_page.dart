@@ -45,15 +45,17 @@ class _PdfPageState extends State<PdfPage>{
   }
 
   pdf(){
-    return Column(
-      children: [
-        SizedBox(height: MediaQuery.of(context).size.height*.03),
-        HomePageButton(),
-        Container(
-          height: MediaQuery.of(context).size.height*.89,
-            width: MediaQuery.of(context).size.width,
-            child: PDFViewer(document: _doc))
-      ],
+    return SingleChildScrollView(
+      child: Column(
+        children: [
+          SizedBox(height: MediaQuery.of(context).size.height*.03),
+          HomePageButton(),
+          Container(
+            height: MediaQuery.of(context).size.height*.89,
+              width: MediaQuery.of(context).size.width,
+              child: PDFViewer(document: _doc))
+        ],
+      ),
     );
   }
 }

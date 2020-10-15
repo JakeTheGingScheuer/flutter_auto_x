@@ -16,51 +16,53 @@ class EventsLookupWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     hFlexVal = MediaQuery.of(context).size.height*0.05;
     wFlexVal = MediaQuery.of(context).size.width*0.1;
-    return Container(
-        child: Column( children: [
-          SizedBox(height: hFlexVal),
-          HomePageButton(),
-          SizedBox(height: 2*hFlexVal),
-          Image(width: 8*wFlexVal, image: AssetImage(AppStrings.motorSportReg)),
-          SizedBox(height: hFlexVal),
-          Row(
-            children: [
-              marginSpace(context),
-              Container(width: 2*wFlexVal, child: Text('Zip Code', style: inputTitleStyle())),
-              marginSpace(context),
-              Container(width: 5*wFlexVal, child: CupertinoTextField(keyboardType: TextInputType.number)),
-              marginSpace(context)
-            ],
-          ),
-          SizedBox(height: hFlexVal),
-          Text('Radius', style: inputTitleStyle()),
-          SizedBox(height: hFlexVal),
-          Container(
-            width: 8*wFlexVal,
-            height: 2*hFlexVal,
-            child: CupertinoPicker(
-              looping: true,
-              itemExtent: 30,
-              onSelectedItemChanged: (val) => _setIndex(val),
+    return SingleChildScrollView(
+      child: Container(
+          child: Column( children: [
+            SizedBox(height: hFlexVal),
+            HomePageButton(),
+            SizedBox(height: 2*hFlexVal),
+            Image(width: 8*wFlexVal, image: AssetImage(AppStrings.motorSportReg)),
+            SizedBox(height: hFlexVal),
+            Row(
               children: [
-                pickerObject('60 miles'),
-                pickerObject('120 miles'),
-                pickerObject('180 miles'),
-                pickerObject('300 miles'),
-                pickerObject('Anywhere')
+                marginSpace(context),
+                Container(width: 2*wFlexVal, child: Text('Zip Code', style: inputTitleStyle())),
+                marginSpace(context),
+                Container(width: 5*wFlexVal, child: CupertinoTextField(keyboardType: TextInputType.number)),
+                marginSpace(context)
               ],
             ),
-          ),
-          SizedBox(height: hFlexVal),
-          FloatingActionButton(
-              backgroundColor: Colors.red,
-              hoverColor: Colors.redAccent,
-              splashColor: Colors.black45,
-              child: Icon(Icons.forward),
-              onPressed: () async {
-                return await playLocalAsset();
-              }),
-    ]));
+            SizedBox(height: hFlexVal),
+            Text('Radius', style: inputTitleStyle()),
+            SizedBox(height: hFlexVal),
+            Container(
+              width: 8*wFlexVal,
+              height: 2*hFlexVal,
+              child: CupertinoPicker(
+                looping: true,
+                itemExtent: 30,
+                onSelectedItemChanged: (val) => _setIndex(val),
+                children: [
+                  pickerObject('60 miles'),
+                  pickerObject('120 miles'),
+                  pickerObject('180 miles'),
+                  pickerObject('300 miles'),
+                  pickerObject('Anywhere')
+                ],
+              ),
+            ),
+            SizedBox(height: hFlexVal),
+            FloatingActionButton(
+                backgroundColor: Colors.red,
+                hoverColor: Colors.redAccent,
+                splashColor: Colors.black45,
+                child: Icon(Icons.forward),
+                onPressed: () async {
+                  return await playLocalAsset();
+                }),
+      ])),
+    );
   }
 
   _setIndex(val) {

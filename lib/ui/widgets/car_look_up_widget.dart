@@ -35,28 +35,30 @@ class _CarLookupState extends State<CarLookupWidget> {
   Widget build(BuildContext context) {
     hFlexVal = MediaQuery.of(context).size.height*0.05;
     wFlexVal = MediaQuery.of(context).size.width*0.1;
-    return Container(
-      child: Column(
-        children: [
-          SizedBox(height: 0.5*hFlexVal),
-          HomePageButton(),
-          SizedBox(height: hFlexVal),
-          Image(width: 7*wFlexVal, image: AssetImage('assets/scca-logo.jpg')),
-          SizedBox(height: 0.5*hFlexVal),
-          BlocBuilder<CarLookupBloc, CarLookupState>(builder: (context, state) {
-            if (state is CarLookupInitialState) {
-              return SelectorWidget(key: Key('manufacturerPicker'), carData: manufacturers);
-            } else if (state is CarLookupSelectedManufacturerState) {
-              return SelectorWidget(key: Key('modelPicker'), carData: state.manufacturer.carModels);
-            } else if (state is CarLookupSelectedModelState) {
-              CarClassResult result = CarClassResult(carClass: state.car.carClass);
-              carLookupBloc.close();
-              return result;
-            } else {
-              return Text('did not work');
-            }
-          }),
-        ],
+    return SingleChildScrollView(
+      child: Container(
+        child: Column(
+          children: [
+            SizedBox(height: 0.5*hFlexVal),
+            HomePageButton(),
+            SizedBox(height: hFlexVal),
+            Image(width: 7*wFlexVal, image: AssetImage('assets/scca-logo.jpg')),
+            SizedBox(height: 0.5*hFlexVal),
+            BlocBuilder<CarLookupBloc, CarLookupState>(builder: (context, state) {
+              if (state is CarLookupInitialState) {
+                return SelectorWidget(key: Key('manufacturerPicker'), carData: manufacturers);
+              } else if (state is CarLookupSelectedManufacturerState) {
+                return SelectorWidget(key: Key('modelPicker'), carData: state.manufacturer.carModels);
+              } else if (state is CarLookupSelectedModelState) {
+                CarClassResult result = CarClassResult(carClass: state.car.carClass);
+                carLookupBloc.close();
+                return result;
+              } else {
+                return Text('did not work');
+              }
+            }),
+          ],
+        ),
       ),
     );
   }

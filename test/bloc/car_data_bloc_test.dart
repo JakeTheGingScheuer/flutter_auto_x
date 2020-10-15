@@ -16,25 +16,23 @@ Manufacturer fakeManufacturer = Manufacturer();
 
 void main(){
 
-  MockCarDataRepo mockHomePageRepo;
+  MockCarDataRepo mockCarDataRepo;
 
   setUp(() {
-    mockHomePageRepo = MockCarDataRepo();
+    mockCarDataRepo = MockCarDataRepo();
   });
 
   test('when given FetchData event and it is successful, returns loading state followed by loaded state', () async {
-    CarDataBloc bloc = CarDataBloc(repository: mockHomePageRepo);
-    when(mockHomePageRepo.getCarData()).thenAnswer((_) => Future.value([fakeManufacturer]));
+    CarDataBloc bloc = CarDataBloc(repository: mockCarDataRepo);
+    when(mockCarDataRepo.getCarData()).thenAnswer((_) => Future.value([fakeManufacturer]));
     bloc.add(fakeFetchDataEvent);
-    verify(mockHomePageRepo.getCarData());
     await emitsExactly(bloc, [isA<CarDataLoadingState>(), isA<CarDataLoadedState>()]);
   });
 
   test('when given FetchData event and it fails, returns loading state followed by error state', () async {
-    CarDataBloc bloc = CarDataBloc(repository: mockHomePageRepo);
-    when(mockHomePageRepo.getCarData()).thenThrow(Exception());
+    CarDataBloc bloc = CarDataBloc(repository: mockCarDataRepo);
+    when(mockCarDataRepo.getCarData()).thenThrow(Exception());
     bloc.add(fakeFetchDataEvent);
-    verify(mockHomePageRepo.getCarData());
     await emitsExactly(bloc, [isA<CarDataLoadingState>(), isA<CarDataErrorState>()]);
   });
 }

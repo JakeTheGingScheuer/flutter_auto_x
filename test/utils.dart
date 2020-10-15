@@ -1,6 +1,10 @@
 import 'dart:convert';
 import 'package:auto_x/data/model/car_data.dart';
 import 'package:auto_x/data/model/car_data_api_result_model.dart';
+import 'package:auto_x/main.dart';
+import 'package:auto_x/res/strings/strings.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart';
 import 'package:localstorage/localstorage.dart';
 import 'package:mockito/mockito.dart';

@@ -8,4 +8,5 @@ class AppStrings {
   static String motorSportReg = 'assets/msr.png';
   static String sccaWheel = 'assets/scca_wheel.png';
   static String rick = 'wubalubadubdub.mp3';
+  static String msrUrl = 'https://api.motorsportreg.com/rest/calendars';
 }

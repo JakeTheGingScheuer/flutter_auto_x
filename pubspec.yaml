@@ -18,6 +18,7 @@ dependencies:
   flutter_plugin_pdf_viewer: any
   audioplayers: ^0.16.1
   flutter_launcher_icons: ^0.8.1
+  xml2json: 4.2.0
 
 dev_dependencies:
   flutter_test:

@@ -19,15 +19,16 @@ class _EventsLookupPageState extends State<EventsLookupPage> {
   void initState() {
     super.initState();
     eventDataBloc = BlocProvider.of<EventDataBloc>(context);
-    eventDataBloc.add(FetchEventDataEvent());
   }
 
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<EventDataBloc, EventDataState>(builder: (context, state){
-      if(state is EventDataLoadedState){
+      if(state is EventDataInitialState){
         return EventsLookupWidget();
-      } else if (state is EventDataErrorState){
+      }
+//      else if state is Searching State, Found state, Error state... return a ui with the data in the state object for the calendar
+      else if (state is EventDataErrorState){
         return Text('Nien Nyet NO 9 Yu');
       } else {
         return Spinner();

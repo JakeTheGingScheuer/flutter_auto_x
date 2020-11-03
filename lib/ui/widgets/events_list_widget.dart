@@ -2,6 +2,7 @@ import 'package:audioplayers/audio_cache.dart';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:auto_x/data/model/event_data.dart';
 import 'package:auto_x/res/strings/strings.dart';
+import 'package:auto_x/responsive.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'home_page_button.dart';
@@ -20,7 +21,7 @@ class EventsListWidget extends StatelessWidget{
     return SingleChildScrollView(
       child: Column(
         children: [
-          SizedBox(height: 20),
+          SizedBox(height: Responsive.smallSpace),
           HomePageButton(),
           Container(
               child: Column(

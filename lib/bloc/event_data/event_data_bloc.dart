@@ -17,8 +17,8 @@ class EventDataBloc extends Bloc<EventDataEvent, EventDataState>{
     if(event is FetchEventDataEvent) {
       yield EventDataLoadingState();
       try {
-        await this.repository.getEventDataFromApi(event.zipCode, event.radius);
-        yield EventDataLoadedState();
+        var res = await this.repository.getEventDataFromApi(event.zipCode, event.radius);
+        yield EventDataLoadedState(res);
       }
       catch (e) {
         yield EventDataErrorState();

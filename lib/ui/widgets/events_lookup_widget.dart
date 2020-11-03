@@ -1,19 +1,25 @@
 import 'package:audioplayers/audio_cache.dart';
 import 'package:audioplayers/audioplayers.dart';
+import 'package:auto_x/bloc/event_data/event_data_bloc.dart';
+import 'package:auto_x/bloc/event_data/event_data_event.dart';
 import 'package:auto_x/res/screen_dimensions.dart';
 import 'package:auto_x/res/strings/strings.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'home_page_button.dart';
 
 class EventsLookupWidget extends StatelessWidget {
-  int pickerIndex = 0;
+  String searchRadius;
+  String zipCode;
   var hFlexVal;
   var wFlexVal;
+  EventDataBloc _bloc;
 
   @override
   Widget build(BuildContext context) {
+    _bloc = BlocProvider.of<EventDataBloc>(context);
     hFlexVal = MediaQuery.of(context).size.height*0.05;
     wFlexVal = MediaQuery.of(context).size.width*0.1;
     return SingleChildScrollView(
@@ -29,7 +35,11 @@ class EventsLookupWidget extends StatelessWidget {
                 marginSpace(context),
                 Container(width: 2*wFlexVal, child: Text('Zip Code', style: inputTitleStyle())),
                 marginSpace(context),
-                Container(width: 5*wFlexVal, child: CupertinoTextField(keyboardType: TextInputType.number)),
+                Container(width: 5*wFlexVal,
+                    child: CupertinoTextField(
+                        keyboardType: TextInputType.number,
+                      onChanged: (val) => this.zipCode=val,
+                    )),
                 marginSpace(context)
               ],
             ),
@@ -59,6 +69,7 @@ class EventsLookupWidget extends StatelessWidget {
                 splashColor: Colors.black45,
                 child: Icon(Icons.forward),
                 onPressed: () async {
+                  _bloc.add(FetchEventDataEvent(this.zipCode, this.searchRadius));
 //                  add a fetch data event with the values postalcode and radius
                   return await playLocalAsset();
                 }),
@@ -67,7 +78,14 @@ class EventsLookupWidget extends StatelessWidget {
   }
 
   _setIndex(val) {
-    this.pickerIndex = val;
+    var searchRadius = {
+      0:'60',
+      1:'120',
+      2:'180',
+      3:'300',
+      4:'2000'
+    };
+    this.searchRadius = searchRadius[val];
     HapticFeedback.selectionClick();
   }
 

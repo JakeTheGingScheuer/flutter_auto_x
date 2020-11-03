@@ -13,8 +13,12 @@ class EventDataLoadingState extends EventDataState {
 }
 
 class EventDataLoadedState extends EventDataState {
+  var res;
+
+  EventDataLoadedState(this.res);
+
   @override
-  List<Object> get props => [];
+  List<Object> get props => [res];
 }
 
 class EventDataErrorState extends EventDataState {

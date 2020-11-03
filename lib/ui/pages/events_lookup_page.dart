@@ -27,6 +27,9 @@ class _EventsLookupPageState extends State<EventsLookupPage> {
       if(state is EventDataInitialState){
         return EventsLookupWidget();
       }
+      else if (state is EventDataLoadedState){
+        return Center(child: Text(state.res));
+      }
 //      else if state is Searching State, Found state, Error state... return a ui with the data in the state object for the calendar
       else if (state is EventDataErrorState){
         return Text('Nien Nyet NO 9 Yu');

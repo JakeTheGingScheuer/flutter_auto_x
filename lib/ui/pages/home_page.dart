@@ -14,6 +14,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:http/http.dart';
 import 'package:localstorage/localstorage.dart';
 import 'events_lookup_page.dart';
+import '../../globals.dart' as globals;
 
 class HomePage extends StatelessWidget {
 
@@ -27,10 +28,10 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    globals.screenSize = MediaQuery.of(context).size;
     return Scaffold(
         resizeToAvoidBottomPadding: true,
-        body: Center(
-          child: BlocBuilder<NavigationBloc, NavigationState>(builder: (context, state)
+        body: BlocBuilder<NavigationBloc, NavigationState>(builder: (context, state)
               {
                 if (state is NavigateToEventsState) {
                   return BlocProvider(
@@ -49,7 +50,6 @@ class HomePage extends StatelessWidget {
                     NavigationWidget();
                 }
               }),
-        )
     );
   }
 }

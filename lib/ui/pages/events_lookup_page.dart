@@ -8,6 +8,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import 'error_page.dart';
+
 class EventsLookupPage extends StatefulWidget {
   @override
   _EventsLookupPageState createState() => _EventsLookupPageState();
@@ -32,7 +34,7 @@ class _EventsLookupPageState extends State<EventsLookupPage> {
         return EventsListWidget(events: state.res.events);
       }
       else if (state is EventDataErrorState){
-        return Text('No Events Found');
+        return ErrorPage(errorMessage: 'No events found');
       } else {
         return Spinner();
       }

@@ -4,7 +4,6 @@ import 'package:auto_x/data/model/event_data.dart';
 import 'package:auto_x/res/strings/strings.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
 import 'home_page_button.dart';
 
 class EventsListWidget extends StatelessWidget{
@@ -18,17 +17,16 @@ class EventsListWidget extends StatelessWidget{
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SingleChildScrollView(
       child: Column(
         children: [
+          SizedBox(height: 20),
           HomePageButton(),
-          SingleChildScrollView(
-            child: Container(
+          Container(
               child: Column(
                 children: eventTiles,
               ),
-            ),
-          ),
+            )
         ],
       ),
     );

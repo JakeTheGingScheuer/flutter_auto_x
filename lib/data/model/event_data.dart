@@ -1,4 +1,4 @@
-import 'package:auto_x/res/strings/strings.dart';
+final int urlXmlSuffixLength = 53;
 
 class EventData{
   String name;
@@ -16,7 +16,7 @@ class EventData{
     date = json['start'];
     type = json['type'];
     organization = json['organization']['name'];
-    link = json['detailuri'];
+    link = _parseURL(json['detailuri']);
     description = json['description'];
     venue = Venue.fromJson(json['venue']);
     canceled = json['canceled'];
@@ -31,6 +31,11 @@ class EventData{
         '\n' + organization.toString() + '\n' + venue.toString() + '\n'
         + '-----------------';
     return x;
+  }
+
+  _parseURL(String url){
+    int urlLength = url.length;
+    return url.substring(0, urlLength - urlXmlSuffixLength);
   }
 
   printDescription(){

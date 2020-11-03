@@ -29,4 +29,7 @@ class Responsive {
   static final medium = responsiveLogicalPixels(80);
   static final large = responsiveLogicalPixels(120);
   static final XL = responsiveLogicalPixels(240);
+
+  static final pdfHeight = responsiveLogicalPixels(600);
+  static final pdfWidth = responsiveLogicalPixels(375);
 }

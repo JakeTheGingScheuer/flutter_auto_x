@@ -46,8 +46,7 @@ class HomePage extends StatelessWidget {
                   return BlocProvider(
                       create: (_) => CarDataBloc(repository: carDataRepo), child: CarLookupPage());
                 } else {
-                  return
-                    NavigationWidget();
+                  return NavigationWidget();
                 }
               }),
     );

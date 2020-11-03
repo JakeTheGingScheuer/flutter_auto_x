@@ -1,3 +1,4 @@
+import 'package:auto_x/responsive.dart';
 import 'package:auto_x/ui/widgets/home_page_button.dart';
 import 'package:auto_x/ui/widgets/spinner.dart';
 import 'package:flutter/cupertino.dart';
@@ -48,11 +49,11 @@ class _PdfPageState extends State<PdfPage>{
     return SingleChildScrollView(
       child: Column(
         children: [
-          SizedBox(height: MediaQuery.of(context).size.height*.03),
+          SizedBox(height: Responsive.mediumSpace),
           HomePageButton(),
           Container(
-            height: MediaQuery.of(context).size.height*.89,
-              width: MediaQuery.of(context).size.width,
+            height: Responsive.pdfHeight,
+              width: Responsive.pdfWidth,
               child: PDFViewer(document: _doc))
         ],
       ),

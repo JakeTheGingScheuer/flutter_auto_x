@@ -16,7 +16,7 @@ class EventData{
     date = json['start'];
     type = json['type'];
     organization = json['organization']['name'];
-    link = AppStrings.msrSiteUrl + json['organization']['uri'];
+    link = json['detailuri'];
     description = json['description'];
     venue = Venue.fromJson(json['venue']);
     canceled = json['canceled'];

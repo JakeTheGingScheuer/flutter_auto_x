@@ -11,6 +11,7 @@ class EventDataApiResultModel{
     myTransformer.parse(responseBody);
     var res = jsonDecode(myTransformer.toParker());
     List rawEventData = res['response']['events']['event'];
+    print(rawEventData[0]);
     for(int i=0; i<rawEventData.length; i++){
       events.add(EventData.fromJson(rawEventData[i]));
     }

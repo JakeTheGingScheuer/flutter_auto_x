@@ -73,7 +73,8 @@ class EventsLookupWidget extends StatelessWidget {
                 splashColor: Colors.black45,
                 child: Icon(Icons.forward),
                 onPressed: () async => _bloc.add(FetchEventDataEvent(this.zipCode, this.searchRadius))
-            )
+            ),
+            SizedBox(height: Responsive.XLSpace)
       ])),
     );
   }

@@ -13,6 +13,7 @@ class EventsListWidget extends StatelessWidget{
   EventsListWidget({events}){
     for(EventData event in events){
       eventTiles.add(EventTile(event: event));
+      print(event.link);
     }
   }
 
@@ -21,7 +22,7 @@ class EventsListWidget extends StatelessWidget{
     return SingleChildScrollView(
       child: Column(
         children: [
-          SizedBox(height: Responsive.smallSpace),
+          SizedBox(height: Responsive.mediumSpace),
           HomePageButton(),
           Container(
               child: Column(

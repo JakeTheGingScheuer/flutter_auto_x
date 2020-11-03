@@ -2,6 +2,7 @@ import 'package:auto_x/bloc/car_data/car_data_bloc.dart';
 import 'package:auto_x/bloc/car_data/car_data_event.dart';
 import 'package:auto_x/bloc/car_data/cart_data_state.dart';
 import 'package:auto_x/bloc/car_lookup/car_lookup_bloc.dart';
+import 'package:auto_x/ui/pages/error_page.dart';
 import 'package:auto_x/ui/widgets/spinner.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -30,7 +31,7 @@ class _CarLookupPageState extends State<CarLookupPage> {
             } else if (state is CarDataLoadingState) {
               return Spinner();
             } else if (state is CarDataErrorState) {
-              return Text(state.message);
+              return ErrorPage(errorMessage: state.message);
             } else if (state is CarDataLoadedState) {
               return BlocProvider(
                   create: (_) => CarLookupBloc(),

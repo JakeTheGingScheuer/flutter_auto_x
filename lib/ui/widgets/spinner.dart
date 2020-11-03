@@ -1,5 +1,6 @@
 import 'dart:math';
 import 'package:auto_x/res/strings/strings.dart';
+import 'package:auto_x/responsive.dart';
 import 'package:flutter/cupertino.dart';
 
 class Spinner extends StatefulWidget{
@@ -33,7 +34,7 @@ class _SpinnerState extends State<Spinner> with SingleTickerProviderStateMixin {
               child: child,
             );
           },
-          child: Image(height: 80, image: AssetImage(AppStrings.sccaWheel)),
+          child: Image(height: Responsive.medium, image: AssetImage(AppStrings.sccaWheel)),
         ),
       );
   }

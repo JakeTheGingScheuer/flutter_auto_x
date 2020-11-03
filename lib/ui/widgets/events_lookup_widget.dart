@@ -1,8 +1,5 @@
-import 'package:audioplayers/audio_cache.dart';
-import 'package:audioplayers/audioplayers.dart';
 import 'package:auto_x/bloc/event_data/event_data_bloc.dart';
 import 'package:auto_x/bloc/event_data/event_data_event.dart';
-import 'package:auto_x/res/screen_dimensions.dart';
 import 'package:auto_x/res/strings/strings.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -13,79 +10,74 @@ import 'home_page_button.dart';
 class EventsLookupWidget extends StatelessWidget {
   String searchRadius;
   String zipCode;
-  var hFlexVal;
-  var wFlexVal;
+  final searchRadiusChoices = {
+    0:'60',
+    1:'120',
+    2:'180',
+    3:'300',
+    4:'2000'
+  };
   EventDataBloc _bloc;
 
   @override
   Widget build(BuildContext context) {
     _bloc = BlocProvider.of<EventDataBloc>(context);
-    hFlexVal = MediaQuery.of(context).size.height*0.05;
-    wFlexVal = MediaQuery.of(context).size.width*0.1;
     return SingleChildScrollView(
       child: Container(
           child: Column( children: [
-            SizedBox(height: hFlexVal),
+            SizedBox(height: 10),
             HomePageButton(),
-            SizedBox(height: 2*hFlexVal),
-            Image(width: 8*wFlexVal, image: AssetImage(AppStrings.motorSportReg)),
-            SizedBox(height: hFlexVal),
+            SizedBox(height: 10),
+            Image(width: 300, image: AssetImage(AppStrings.motorSportReg)),
+            SizedBox(height: 60),
             Row(
               children: [
-                marginSpace(context),
-                Container(width: 2*wFlexVal, child: Text('Zip Code', style: inputTitleStyle())),
-                marginSpace(context),
-                Container(width: 5*wFlexVal,
+                SizedBox(width:30),
+                Container(width: 100, child: Text('Zip Code', style: inputTitleStyle())),
+                SizedBox(width:10),
+                Container(width: 150,
                     child: CupertinoTextField(
                         keyboardType: TextInputType.number,
                       onChanged: (val) => this.zipCode=val,
                     )),
-                marginSpace(context)
+                SizedBox(width:10)
               ],
             ),
-            SizedBox(height: hFlexVal),
-            Text('Radius', style: inputTitleStyle()),
-            SizedBox(height: hFlexVal),
-            Container(
-              width: 8*wFlexVal,
-              height: 2*hFlexVal,
-              child: CupertinoPicker(
-                looping: true,
-                itemExtent: 30,
-                onSelectedItemChanged: (val) => _setIndex(val),
-                children: [
-                  pickerObject('60 miles'),
-                  pickerObject('120 miles'),
-                  pickerObject('180 miles'),
-                  pickerObject('300 miles'),
-                  pickerObject('Anywhere')
-                ],
-              ),
-            ),
-            SizedBox(height: hFlexVal),
+            SizedBox(height: 60),
+            Row(children: [
+              SizedBox(width: 30),
+              Container(width: 100, child: Text('Search Radius', style: inputTitleStyle())),
+              Container(
+                width: 200,
+                height: 80,
+                child: CupertinoPicker(
+                  looping: true,
+                  itemExtent: 40,
+                  onSelectedItemChanged: (val) => _setIndex(val),
+                  children: [
+                    pickerObject('60 miles'),
+                    pickerObject('120 miles'),
+                    pickerObject('180 miles'),
+                    pickerObject('300 miles'),
+                    pickerObject('Anywhere')
+                  ],
+                ),
+              )
+            ]),
+            SizedBox(height: 30),
             FloatingActionButton(
                 backgroundColor: Colors.red,
                 hoverColor: Colors.redAccent,
                 splashColor: Colors.black45,
                 child: Icon(Icons.forward),
-                onPressed: () async {
-                  _bloc.add(FetchEventDataEvent(this.zipCode, this.searchRadius));
-//                  add a fetch data event with the values postalcode and radius
-                  return await playLocalAsset();
-                }),
+                onPressed: () async => _bloc.add(FetchEventDataEvent(this.zipCode, this.searchRadius))
+            )
       ])),
     );
   }
 
   _setIndex(val) {
-    var searchRadius = {
-      0:'60',
-      1:'120',
-      2:'180',
-      3:'300',
-      4:'2000'
-    };
-    this.searchRadius = searchRadius[val];
+    this.searchRadius = searchRadiusChoices[val];
     HapticFeedback.selectionClick();
   }
 
@@ -99,10 +91,5 @@ class EventsLookupWidget extends StatelessWidget {
         fontWeight: FontWeight.bold,
         shadows: [Shadow(color: Colors.grey.withOpacity(0.5), blurRadius: 7, offset: Offset(0, 3))]
     );
-  }
-
-  Future<AudioPlayer> playLocalAsset() async {
-    AudioCache cache = new AudioCache();
-    return await cache.play(AppStrings.rick);
   }
 }

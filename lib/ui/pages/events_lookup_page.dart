@@ -1,6 +1,7 @@
 import 'package:auto_x/bloc/event_data/event_data_bloc.dart';
 import 'package:auto_x/bloc/event_data/event_data_event.dart';
 import 'package:auto_x/bloc/event_data/event_data_state.dart';
+import 'package:auto_x/ui/widgets/events_list_widget.dart';
 import 'package:auto_x/ui/widgets/events_lookup_widget.dart';
 import 'package:auto_x/ui/widgets/spinner.dart';
 import 'package:flutter/cupertino.dart';
@@ -28,11 +29,10 @@ class _EventsLookupPageState extends State<EventsLookupPage> {
         return EventsLookupWidget();
       }
       else if (state is EventDataLoadedState){
-        return Center(child: Text(state.res));
+        return EventsListWidget(events: state.res.events);
       }
-//      else if state is Searching State, Found state, Error state... return a ui with the data in the state object for the calendar
       else if (state is EventDataErrorState){
-        return Text('Nien Nyet NO 9 Yu');
+        return Text('No Events Found');
       } else {
         return Spinner();
       }

@@ -1,50 +1,26 @@
 import 'dart:convert';
 
+import 'package:auto_x/data/model/event_data.dart';
 import 'package:xml2json/xml2json.dart';
 
 class EventDataApiResultModel{
   final myTransformer = Xml2Json();
-  var events;
-  var names;
-  var dates;
-  var types;
-  var venues;
+  List<EventData> events = [];
 
   EventDataApiResultModel(responseBody){
     myTransformer.parse(responseBody);
     var res = jsonDecode(myTransformer.toParker());
-    events = res['response']['events']['event'];
-    for(int i=0; i<events.length; i++){
-      names.add(events[i]['name']);
-      dates.add(events[i]['start']);
-      types.add(events[i]['type']);
-      venues.add(events[i]['venue']);
+    List rawEventData = res['response']['events']['event'];
+    for(int i=0; i<rawEventData.length; i++){
+      events.add(EventData.fromJson(rawEventData[i]));
     }
   }
 
   printEvents(){
-    print('-------------');
-    print(events);
-    print('-------------');
-  }
-  printNames(){
-    print('-------------');
-    print(names);
-    print('-------------');
-  }
-  printVenues(){
-    print('-------------');
-    print(venues);
-    print('-------------');
-  }
-  printTypes(){
-    print('-------------');
-    print(types);
-    print('-------------');
-  }
-  printDates(){
-    print('-------------');
-    print(dates);
-    print('-------------');
+    String x = '';
+    for(int i=0; i< events.length; i++){
+      x = x+events[i].toString();
+    }
+    return x;
   }
 }

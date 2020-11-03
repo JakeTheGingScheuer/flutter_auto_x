@@ -17,15 +17,12 @@ class EventDataRepositoryImpl implements EventDataRepository {
 
   @override
   getEventDataFromApi(String zipCode, String radius) async {
-    String url = AppStrings.msrUrl + '?postalcode=' + zipCode + '&radius=' + radius;
+    String url = AppStrings.msrApiUrl + '?postalcode=' + zipCode + '&radius=' + radius;
+    print(url);
     var response = await http.get(url, headers: Auth.headers);
+    print(response.statusCode);
     if (response.statusCode == 200) {
-//      EventDataApiResultModel res = EventDataApiResultModel(response.body);
-//      res.printNames();
-//      res.printDates();
-//      res.printTypes();
-//      res.printDates();
-      return 'yup';
+      return EventDataApiResultModel(response.body);
     } else {
       print(response);
       throw Exception();

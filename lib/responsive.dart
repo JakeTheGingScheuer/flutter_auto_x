@@ -20,10 +20,10 @@ class Responsive {
   static final largeLogo = responsiveLogicalPixels(200);
   static final XLLogo = responsiveLogicalPixels(300);
 
-  static final smallFont = responsiveLogicalPixels(8);
+  static final smallFont = responsiveLogicalPixels(12);
   static final mediumFont = responsiveLogicalPixels(16);
-  static final largeFont = responsiveLogicalPixels(24);
-  static final XLFont = responsiveLogicalPixels(36);
+  static final largeFont = responsiveLogicalPixels(20);
+  static final XLFont = responsiveLogicalPixels(28);
 
   static final small = responsiveLogicalPixels(40);
   static final medium = responsiveLogicalPixels(80);
